@@ -150,9 +150,23 @@ for (let item of productItems) {
                 /**Xử lý việc submit */
                 var borrowSubmit = document.getElementById('borrow-submit')
                 borrowSubmit.onclick = function () {
-                    console.log(optionValue)
                     if (getCookie('id') !== '') {
+                        console.log(optionValue)
+                        var xmlhttp;
+                        if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
+                            xmlhttp=new XMLHttpRequest();
+                        } else { // code for IE6, IE5
+                            xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+                        }
 
+                        xmlhttp.onreadystatechange=function() {
+                            if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+                                console.log(this.responseText)
+                            }
+                        }
+
+                        xmlhttp.open("GET","../server/clients/borrowBook.php?idpost="+idPost+"&idusertake="+getCookie('id')+"&loanterm="+optionValue, true);
+                        xmlhttp.send();
                     } else {
                         if(confirm('Vui lòng đăng nhập để mượn sách')) {
                             openModal(); 
