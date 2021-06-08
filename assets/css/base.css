@@ -1,0 +1,85 @@
+/* Nơi chứa các css cơ bản khi start mọi dự án, bạn cần phải đảm bảo các trình duyệt
+hiển thị giống nhau ví dụ: reset, typography, utilities, animation */
+/* declare variable */
+:root {
+    --primary-color: #08bbb7;
+    --primary-color-hover: rgba(8, 187, 183, 0.8);
+    --black-color: #000;
+    --white-color: #fff;
+    --text-color: #333;
+}
+
+.primary-color {
+    color: var(--primary-color);
+}
+
+/* reset */
+body {
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+}
+
+button {
+    border: none;
+    outline: none;
+    background-color: transparent;
+}
+
+ul, h1, h2, h3, h4, h5, h6, p {
+    margin: 0;
+    padding: 0;
+}
+
+
+/* col 2.4 */
+.col-2-4 {
+    flex: 0 0 auto;
+    width: 20%;
+}
+
+
+/* utilities */
+
+
+/* autocomplete class sử dụng với js autocomplete function*/
+.autocomplete {
+    position: relative;
+    display: inline-block;
+}
+
+.autocomplete-items {
+    position: absolute;
+    border: 1px solid #d4d4d4;
+    border-bottom: none;
+    border-top: none;
+    z-index: 99;
+    /*position the autocomplete items to be the same width as the container:*/
+    top: 100%;
+    left: 0;
+    right: 0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.autocomplete-items div {
+    color: var(--text-color);
+    padding: 4px 10px;
+    cursor: pointer;
+    background-color: #fff; 
+    border-bottom: 1px solid #d4d4d4; 
+}
+
+/*when hovering an item:*/
+.autocomplete-items div:hover {
+    background-color: #e9e9e9; 
+}
+
+/*when navigating through the items using the arrow keys:*/
+.autocomplete-active {
+    background-color: DodgerBlue !important; 
+    color: #ffffff; 
+}
+
+/*  */
+.input-none {
+    display: none;
+}

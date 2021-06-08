@@ -1,0 +1,97 @@
+<header id="header">
+    <div class="header-top">
+        <div class="container">
+            <div class="row">
+                <!-- <div class="col-12"> -->
+                    <div class="logo-header col-9">
+                        <a href="../index.php" class="logo-header-link">
+                            <img src="../assets/images/logoChiaSeSach.png" alt="" height="110px">
+                        </a>
+                    </div>
+
+
+                    <?php include_once "fetchDataUser.php";
+                        if (isset($dataUser)) {
+                            echo '<div class="hello-user col-3">Xin chào: '.$dataUser['fullname'].'</div>';
+                        }
+                    ?>
+                <!-- </div> -->
+            </div>
+        </div>
+    </div>
+
+    <div id="header-menu">
+        <div class="container">
+            <div class="row">
+                <div class="col-2">
+                    <div class="menu-item">
+                        <a href="#" class="menu-item-link">Trang Chủ</a>
+                    </div>
+                </div>
+
+                <div class="col-6">
+                    <div class="field-search">
+                        <form method="get" action="/" id="search-box" autocomplete="off">
+                            <div class="search-query-wrap">
+                                <input type="text" class="search-query" name="search-query" placeholder="Tìm kiếm sách">
+                                
+                                <div class="search-history">
+                                    <ul class="search-history-list">
+                                        <li class="search-history-item">Phân tích thiết kế thuật toán</li>
+                                        <li class="search-history-item">Niên luận cơ sở ngành</li>
+                                        <li class="search-history-item">Đồ họa máy tính</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <button type="submit" name="submit-search" class="btn button-search">
+                                <i class="fas fa-search search-icon"></i>
+                                <div class="search-title">Tìm Kiếm</div>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="col-2" style="display: flex;">
+                    <button class="add-book-button btn">Thêm Sách</button>
+                </div>
+
+                <div class="col-2">
+                    <div class="user">
+                        <div class="user-area">
+                            <i class="fas fa-user user-icon"></i>
+                            <p class="user-text">Tài Khoản</p>
+                            <i class="fas fa-caret-down caret-down-icon"></i>
+                        </div>
+
+                        <ul class="user-drop-down">
+                            <!-- Khi chưa Log In -->
+                            <li class="user-drop-down_item">
+                                <button class="user-drop-down_button btn" onclick="openModal(); openLogIn();">Đăng Nhập</button>
+                            </li>
+
+                            <li class="user-drop-down_item">
+                                <button class="user-drop-down_button btn" onclick="openModal(); onpenSignUp();">Tạo Tài Khoản</button>
+                            </li>
+
+                            <!-- Khi đã Log In -->
+                            <li class="user-drop-down_item logged">
+                                <button class="user-drop-down_button btn">Trang Cá Nhân</button>
+                            </li>
+
+                            <li class="user-drop-down_item logged">
+                                <button class="user-drop-down_button btn">Kho Sách Của Tui</button>
+                            </li>
+
+                            <li class="user-drop-down_item logged">
+                                <button class="user-drop-down_button btn" onclick="location.href='../server/clients/logout.php';">
+                                    Đăng Xuất
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
