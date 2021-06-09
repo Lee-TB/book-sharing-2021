@@ -77,21 +77,25 @@
 </div>
 
 <?php
-    require_once "fetchDataProduct.php";
     $arr = array();
+
+    $sql =  "SELECT `idpost`, `bookname`, `fullname`, `posttime`, `iduser`, `photo` ".
+    "FROM `post` ".
+        "INNER JOIN `user` ON `post`.`iduser` = `user`.`id` ".
+        "INNER JOIN `book` ON `post`.`idbook` = `book`.`idbook` ".
+    "ORDER BY `bookname`";
+    $resultProduct = $connectDatabase->query($sql);
     for ($i=1; $i<=$resultProduct->num_rows; $i++) {
         $dataProduct = $resultProduct->fetch_assoc();
+        $idPost = $dataProduct['idpost'];
+        $sql = "SELECT `idloan` FROM `loan` WHERE `idpost` = '$idPost'";
+        $result = $connectDatabase->query($sql);
+        if ($result->num_rows > 0){
+            $dataProduct['borrowed'] = 1;
+        } else {
+            $dataProduct['borrowed'] = 0;
+        }
         array_push($arr, $dataProduct);
-        // echo '<div class="col-2-4">'.
-        //         '<div class="product-item" id="'.$dataProduct['idpost'].'-product-item">'.
-        //             '<div class="product-item__img" style="background-image: url('.$dataProduct['photo'].');"></div>'.
-        //             '<h6 class="product-item__name" title="'.$dataProduct['bookname'].'">'.
-        //                 $dataProduct['bookname'].
-        //             '</h6>'.
-        //             '<p class="product-item__user-post">Người đăng:<br>'.$dataProduct['fullname'].'</p>'.
-        //             '<p class="product-item__time-post">Được đăng lúc:<br>'.$dataProduct['posttime'].'</p>'.
-        //         '</div>'.
-        //     '</div>';
     }
     $myJSON = json_encode($arr);
 ?>
@@ -116,7 +120,9 @@
                                     '<p class="product-item__user-post">Người đăng:<br>'+myJson[i].fullname+'</p>'+
                                     '<p class="product-item__time-post">Được đăng lúc:<br>'+myJson[i].posttime+'</p>'+
                                 '</div>';
+        if (myJson[i].borrowed) {
+            divCol_24.querySelector('.product-item__borrowed').style.display = 'block';
+        }
         productContainer.appendChild(divCol_24);
     }
-    // console.log(productContainer)
 </script>
