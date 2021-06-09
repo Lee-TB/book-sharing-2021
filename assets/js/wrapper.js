@@ -1,7 +1,6 @@
 /***filter */
 function newSortButton() {
     var productItemElement = document.querySelectorAll('.product-item');
-    // console.log(productItemElement);
 }
 
 function filterInput (event) {
@@ -23,7 +22,8 @@ function filterInput (event) {
 /***Main content */
 var productItems = document.querySelectorAll('.product-item')
 for (let item of productItems) {
-    item.onclick = function () {//function call AJAX
+    item.onclick = fetchProductDetail;
+    function fetchProductDetail() {//function call AJAX
         var idPost = parseInt(item.id);
         var xmlhttp;
         if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
@@ -37,7 +37,6 @@ for (let item of productItems) {
             if (xmlhttp.readyState==4 && xmlhttp.status==200) {
                 var myJson = xmlhttp.responseText;
                 var dataProduct = JSON.parse(myJson);
-                                
                 productDetailElement.innerHTML = ''+
                 '<div class="product-detail__borrowed">'+
                     '<span>Đang được mượn</span>'+
@@ -72,12 +71,14 @@ for (let item of productItems) {
 
                             '<div class="product-detail__control-timer">'+
                                 '<label>Trả lại sau: </label><br>'+
-                                '<span class="timer">6 ngày, 5 giờ, 48 phút, 33 giây</span>'+
+                                '<span class="timer">loading...</span>'+
                             '</div>'+
                         '</div>'+
                     '</div>'+
                 '</div>';
-               
+                
+                /**Tạo ra các nút tùy chọn thời gian mượn */
+                //Mặc định nếu người đăng bài không chọn các tùy chọn thời gian cho mượn thì sẽ tạo 3 button cơ bản 1wek, 2week và 1month
                 if (dataProduct['optionloan'] == '') {
                     document.getElementById('product-detail__control-group-btn').innerHTML = ''+
                     '<label class="my-btn my-btn-outline my-btn-outline--active product-detail__btn" for="1week">1 tuần</label>'+
@@ -103,7 +104,7 @@ for (let item of productItems) {
                         }
                     }
                     
-                } else {
+                } else {//ngược lại hiển thị các nút mà người đăng đã chọn
                     var optionsLoan = dataProduct['optionloan'].split(','); // array các tùy chọn mà người đăng đã nhập
                     let htmlText = ''; // Khởi tạo biến string để chứa html button
                     var activeButtonOnce = 'my-btn-outline--active'; //chỉ thêm vào nút đầu tiên
@@ -151,7 +152,6 @@ for (let item of productItems) {
                 var borrowSubmit = document.getElementById('borrow-submit')
                 borrowSubmit.onclick = function () {
                     if (getCookie('id') !== '') {
-                        console.log(optionValue)
                         var xmlhttp;
                         if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
                             xmlhttp=new XMLHttpRequest();
@@ -161,7 +161,11 @@ for (let item of productItems) {
 
                         xmlhttp.onreadystatechange=function() {
                             if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-                                console.log(this.responseText)
+                                if (this.responseText == true) {
+                                    alert('Mượn sách thành công');
+                                    closeProductDetail();
+                                    closeModal();
+                                }
                             }
                         }
 
@@ -169,13 +173,68 @@ for (let item of productItems) {
                         xmlhttp.send();
                     } else {
                         if(confirm('Vui lòng đăng nhập để mượn sách')) {
-                            openModal(); 
                             closeProductDetail();
                             openLogIn(); 
                         }
                     }
                 }
                 
+                // Xử lý việc hiển thị thời gian hoàn trả sách
+                function timeHandle() {
+                    if (dataProduct['loanterm'] != undefined) {
+                        //nếu cho luôn thì không cần tính thời gian hoàn trả
+                        if (dataProduct['loanterm'].indexOf('forever') != -1) {
+                            console.log(dataProduct['loanterm'])
+                            return 'Sách đã được tặng cho người khác';
+                        } else {
+                            let days;
+                            if (dataProduct['loanterm'].indexOf('week') != -1) {
+                                days = parseInt(dataProduct['loanterm']) * 7;
+                            }
+                            if (dataProduct['loanterm'].indexOf('month') != -1) {
+                                days = parseInt(dataProduct['loanterm']) * 30;
+                            }
+                            let loanTime = dataProduct['loantime'].replaceAll(' ', "T");
+                            let dateTime = new Date(Date.parse(loanTime));
+                            dateTime.setDate(dateTime.getDate() + days);
+                            let milliSecond = dateTime.valueOf() - new Date().valueOf();
+                            
+                            let timerString = '';
+                            timerString += Math.floor(milliSecond / 86400000) + ' ngày, '
+                            milliSecond = milliSecond % 86400000
+        
+                            timerString += Math.floor(milliSecond / 3600000) + ' giờ, '
+                            milliSecond = milliSecond % 3600000
+        
+                            timerString += Math.floor(milliSecond / 60000) + ' phút, '
+                            milliSecond = milliSecond % 60000
+        
+                            timerString += Math.floor(milliSecond / 1000) + ' giây.'
+
+                            return timerString;
+                        }
+                    }
+                }
+
+                // Mark sản phẩm nào đang được mượn
+                function productDetailBorrowedDisplay() {
+                    // Nếu sản phẩm đang được mượn thì gán nhãn đang được mượn và hiện thời gian hoàn trả
+                    if (dataProduct['borrowed']) {
+                        productDetailElement.querySelector(".product-detail__borrowed").style.display = 'block';
+                        for (let item of productDetailElement.querySelectorAll(".product-detail__control-group")) {
+                            item.style.display = 'none';
+                        }
+    
+                        //hiện thời gian  hoàn trả
+                        productDetailElement.querySelector(".product-detail__control-timer").style.display = 'block';
+                        productDetailControlTimer = setInterval(() => {
+                            productDetailElement.querySelector(".product-detail__control-timer span").innerHTML = timeHandle();
+                        }, 1000);
+                    }
+                }
+                /**Gọi hàm vừa tạo */
+                productDetailBorrowedDisplay()
+
             }
         }
         xmlhttp.open("GET","../layouts/productDetail.php?idpost="+idPost, true);

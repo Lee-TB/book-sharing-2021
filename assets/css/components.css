@@ -45,7 +45,7 @@
 
 #modal .modal-inner {
     position: relative;
-    z-index: 2;
+    z-index: 100;
     margin: auto;
     margin-top: 55px;
     background-color: var(--white-color);
@@ -54,6 +54,7 @@
 
 #modal .close-modal {
     position: absolute;
+    z-index: 1000;
     top: -20px;
     right: -20px;
     display: flex;
