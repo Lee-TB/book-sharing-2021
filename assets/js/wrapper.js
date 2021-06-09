@@ -161,11 +161,9 @@ for (let item of productItems) {
 
                         xmlhttp.onreadystatechange=function() {
                             if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-                                if (this.responseText == true) {
-                                    alert('Mượn sách thành công');
-                                    closeProductDetail();
-                                    closeModal();
-                                }
+                                let json = xmlhttp.responseText;
+                                let object = JSON.parse(json);
+                                productDetailBorrowedDisplay(object);           
                             }
                         }
 
@@ -180,21 +178,20 @@ for (let item of productItems) {
                 }
                 
                 // Xử lý việc hiển thị thời gian hoàn trả sách
-                function timeHandle() {
-                    if (dataProduct['loanterm'] != undefined) {
+                function timeHandle(object) {
+                    if (object['borrowed'] == true) {
                         //nếu cho luôn thì không cần tính thời gian hoàn trả
-                        if (dataProduct['loanterm'].indexOf('forever') != -1) {
-                            console.log(dataProduct['loanterm'])
+                        if (object['loanterm'].indexOf('forever') != -1) {
                             return 'Sách đã được tặng cho người khác';
                         } else {
                             let days;
-                            if (dataProduct['loanterm'].indexOf('week') != -1) {
-                                days = parseInt(dataProduct['loanterm']) * 7;
+                            if (object['loanterm'].indexOf('week') != -1) {
+                                days = parseInt(object['loanterm']) * 7;
                             }
-                            if (dataProduct['loanterm'].indexOf('month') != -1) {
-                                days = parseInt(dataProduct['loanterm']) * 30;
+                            if (object['loanterm'].indexOf('month') != -1) {
+                                days = parseInt(object['loanterm']) * 30;
                             }
-                            let loanTime = dataProduct['loantime'].replaceAll(' ', "T");
+                            let loanTime = object['loantime'].replaceAll(' ', "T");
                             let dateTime = new Date(Date.parse(loanTime));
                             dateTime.setDate(dateTime.getDate() + days);
                             let milliSecond = dateTime.valueOf() - new Date().valueOf();
@@ -217,9 +214,10 @@ for (let item of productItems) {
                 }
 
                 // Mark sản phẩm nào đang được mượn
-                function productDetailBorrowedDisplay() {
+                function productDetailBorrowedDisplay(object) {
                     // Nếu sản phẩm đang được mượn thì gán nhãn đang được mượn và hiện thời gian hoàn trả
-                    if (dataProduct['borrowed']) {
+                    if (object['borrowed']) {
+                        let productDetailElement = document.getElementById("product-detail");
                         productDetailElement.querySelector(".product-detail__borrowed").style.display = 'block';
                         for (let item of productDetailElement.querySelectorAll(".product-detail__control-group")) {
                             item.style.display = 'none';
@@ -228,12 +226,13 @@ for (let item of productItems) {
                         //hiện thời gian  hoàn trả
                         productDetailElement.querySelector(".product-detail__control-timer").style.display = 'block';
                         productDetailControlTimer = setInterval(() => {
-                            productDetailElement.querySelector(".product-detail__control-timer span").innerHTML = timeHandle();
+                            productDetailElement.querySelector(".product-detail__control-timer span").innerHTML = timeHandle(object);
                         }, 1000);
                     }
                 }
+
                 /**Gọi hàm vừa tạo */
-                productDetailBorrowedDisplay()
+                productDetailBorrowedDisplay(dataProduct)
 
             }
         }

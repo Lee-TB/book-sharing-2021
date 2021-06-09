@@ -14,13 +14,11 @@
             $dataLoan = $result->fetch_assoc();
             $loanTime = $dataLoan['loantime'];
             $loanTerm = $dataLoan['loanterm'];
-            $borrowed = true;
             $assocArray['loantime'] = $loanTime;
             $assocArray['loanterm'] = $loanTerm;
-            $assocArray['borrowed'] = $borrowed;
+            $assocArray['borrowed'] = 1;
         } else {
-            $borrowed = false;
-            $assocArray['borrowed'] = $borrowed;
+            $assocArray['borrowed'] = 0;
         }
 
         // SELECT thông tin trong bảng post trước
