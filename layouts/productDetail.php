@@ -7,7 +7,7 @@
         $assocArray = array();
 
         //SELECT xem idpost có tồn tại trong bảng loan hay chưa
-        $sql = "SELECT * FROM `loan` WHERE `idpost` = '$idpost'";
+        $sql = "SELECT * FROM `loan` WHERE `idpost` = '$idpost' ORDER BY `idloan` DESC LIMIT 1";
         $result = $connectDatabase->query($sql);
         if ($result->num_rows != 0) {
             //đưa ra  thời gian trả

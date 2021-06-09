@@ -84,18 +84,21 @@
         "INNER JOIN `user` ON `post`.`iduser` = `user`.`id` ".
         "INNER JOIN `book` ON `post`.`idbook` = `book`.`idbook` ".
     "ORDER BY `bookname`";
-    $resultProduct = $connectDatabase->query($sql);
-    for ($i=1; $i<=$resultProduct->num_rows; $i++) {
-        $dataProduct = $resultProduct->fetch_assoc();
-        $idPost = $dataProduct['idpost'];
-        $sql = "SELECT `idloan` FROM `loan` WHERE `idpost` = '$idPost'";
+    $resultProducts = $connectDatabase->query($sql);
+    for ($i=1; $i<=$resultProducts->num_rows; $i++) {
+        $dataProducts = $resultProducts->fetch_assoc();
+        $idPost = $dataProducts['idpost'];
+        $sql = "SELECT * FROM `loan` WHERE `idpost` = '$idPost'";
         $result = $connectDatabase->query($sql);
         if ($result->num_rows > 0){
-            $dataProduct['borrowed'] = 1;
+            $dataProduct = $result->fetch_assoc();
+            $dataProducts['loantime'] = $dataProduct['loantime'];
+            $dataProducts['loanterm'] = $dataProduct['loanterm'];
+            $dataProducts['borrowed'] = 1;
         } else {
-            $dataProduct['borrowed'] = 0;
+            $dataProducts['borrowed'] = 0;
         }
-        array_push($arr, $dataProduct);
+        array_push($arr, $dataProducts);
     }
     $myJSON = json_encode($arr);
 ?>
@@ -105,7 +108,6 @@
     var productContainer = document.querySelector(".product .row");
     for (var i=0; i<myJson.length; i++) {
         var divCol_24 = document.createElement('div');
-        // console.log(divCol_24);
         divCol_24.classList.add('col-2-4');
         divCol_24.innerHTML =   '<div class="product-item" id="'+myJson[i].idpost+'-product-item">'+
                                     '<div class="product-item__borrowed">'+
@@ -120,9 +122,49 @@
                                     '<p class="product-item__user-post">Người đăng:<br>'+myJson[i].fullname+'</p>'+
                                     '<p class="product-item__time-post">Được đăng lúc:<br>'+myJson[i].posttime+'</p>'+
                                 '</div>';
-        if (myJson[i].borrowed) {
+        if (timeHandle(myJson[i]).expired > 0) {
             divCol_24.querySelector('.product-item__borrowed').style.display = 'block';
+        } else {
+            divCol_24.querySelector('.product-item__borrowed').style.display = '';
         }
+        console.log(timeHandle(myJson[i]))
         productContainer.appendChild(divCol_24);
+    }
+
+    /**Xử lý việc hiển thị thời gian hoàn trả sách*/ 
+    function timeHandle(object) {
+        if (object['borrowed'] == true) {
+            //nếu cho luôn thì không cần tính thời gian hoàn trả
+            if (object['loanterm'].indexOf('forever') != -1) {
+                return 'Sách đã được tặng cho người khác';
+            } else {
+                // let days;
+                // if (object['loanterm'].indexOf('week') != -1) {
+                //     days = parseInt(object['loanterm']) * 7;
+                // }
+                // if (object['loanterm'].indexOf('month') != -1) {
+                //     days = parseInt(object['loanterm']) * 30;
+                // }
+                let loanTime = object['loantime'].replaceAll(' ', "T");
+                let dateTime = new Date(Date.parse(loanTime));
+                // dateTime.setDate(dateTime.getDate() + days);
+                dateTime.setSeconds(dateTime.getSeconds() + 5)
+                let milliSecond = dateTime.valueOf() - new Date().valueOf();
+
+                let timerString = '';
+                timerString += Math.floor(milliSecond / 86400000) + ' ngày, '
+                milliSecond = milliSecond % 86400000
+
+                timerString += Math.floor(milliSecond / 3600000) + ' giờ, '
+                milliSecond = milliSecond % 3600000
+
+                timerString += Math.floor(milliSecond / 60000) + ' phút, '
+                milliSecond = milliSecond % 60000
+
+                timerString += Math.floor(milliSecond / 1000) + ' giây.'
+
+                return {'timerstring': timerString, 'expired': milliSecond};
+            }
+        }
     }
 </script>

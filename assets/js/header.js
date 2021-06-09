@@ -46,5 +46,6 @@ function closeModal() {
     document.getElementById("log-in").style.display = "";
     document.getElementById("book-form").style.display = "";
     document.getElementById("product-detail").style.display = "";
-    clearInterval(productDetailControlTimer);
+    clearTimeout(productDetailTimeout);
+    clearInterval(productDetailInterval);
 }

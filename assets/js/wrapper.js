@@ -177,68 +177,84 @@ for (let item of productItems) {
                     }
                 }
                 
-                // Xử lý việc hiển thị thời gian hoàn trả sách
-                function timeHandle(object) {
-                    if (object['borrowed'] == true) {
-                        //nếu cho luôn thì không cần tính thời gian hoàn trả
-                        if (object['loanterm'].indexOf('forever') != -1) {
-                            return 'Sách đã được tặng cho người khác';
-                        } else {
-                            let days;
-                            if (object['loanterm'].indexOf('week') != -1) {
-                                days = parseInt(object['loanterm']) * 7;
-                            }
-                            if (object['loanterm'].indexOf('month') != -1) {
-                                days = parseInt(object['loanterm']) * 30;
-                            }
-                            let loanTime = object['loantime'].replaceAll(' ', "T");
-                            let dateTime = new Date(Date.parse(loanTime));
-                            dateTime.setDate(dateTime.getDate() + days);
-                            let milliSecond = dateTime.valueOf() - new Date().valueOf();
-                            
-                            let timerString = '';
-                            timerString += Math.floor(milliSecond / 86400000) + ' ngày, '
-                            milliSecond = milliSecond % 86400000
-        
-                            timerString += Math.floor(milliSecond / 3600000) + ' giờ, '
-                            milliSecond = milliSecond % 3600000
-        
-                            timerString += Math.floor(milliSecond / 60000) + ' phút, '
-                            milliSecond = milliSecond % 60000
-        
-                            timerString += Math.floor(milliSecond / 1000) + ' giây.'
-
-                            return timerString;
-                        }
-                    }
-                }
-
-                // Mark sản phẩm nào đang được mượn
-                function productDetailBorrowedDisplay(object) {
-                    // Nếu sản phẩm đang được mượn thì gán nhãn đang được mượn và hiện thời gian hoàn trả
-                    if (object['borrowed']) {
-                        let productDetailElement = document.getElementById("product-detail");
-                        productDetailElement.querySelector(".product-detail__borrowed").style.display = 'block';
-                        for (let item of productDetailElement.querySelectorAll(".product-detail__control-group")) {
-                            item.style.display = 'none';
-                        }
-    
-                        //hiện thời gian  hoàn trả
-                        productDetailElement.querySelector(".product-detail__control-timer").style.display = 'block';
-                        productDetailControlTimer = setInterval(() => {
-                            productDetailElement.querySelector(".product-detail__control-timer span").innerHTML = timeHandle(object);
-                        }, 1000);
-                    }
-                }
+                
 
                 /**Gọi hàm vừa tạo */
                 productDetailBorrowedDisplay(dataProduct)
-
             }
         }
         xmlhttp.open("GET","../layouts/productDetail.php?idpost="+idPost, true);
         xmlhttp.send();
         openModal()
         openProductDetail()
+    }
+}
+
+// Xử lý việc hiển thị thời gian hoàn trả sách
+function timeHandle(object) {
+    if (object['borrowed'] == true) {
+        //nếu cho luôn thì không cần tính thời gian hoàn trả
+        if (object['loanterm'].indexOf('forever') != -1) {
+            return 'Sách đã được tặng cho người khác';
+        } else {
+            // let days;
+            // if (object['loanterm'].indexOf('week') != -1) {
+            //     days = parseInt(object['loanterm']) * 7;
+            // }
+            // if (object['loanterm'].indexOf('month') != -1) {
+            //     days = parseInt(object['loanterm']) * 30;
+            // }
+            let loanTime = object['loantime'].replaceAll(' ', "T");
+            let dateTime = new Date(Date.parse(loanTime));
+            // dateTime.setDate(dateTime.getDate() + days);
+            dateTime.setSeconds(dateTime.getSeconds() + 10)
+            let milliSecond = dateTime.valueOf() - new Date().valueOf();
+
+            let timerString = '';
+            timerString += Math.floor(milliSecond / 86400000) + ' ngày, '
+            milliSecond = milliSecond % 86400000
+
+            timerString += Math.floor(milliSecond / 3600000) + ' giờ, '
+            milliSecond = milliSecond % 3600000
+
+            timerString += Math.floor(milliSecond / 60000) + ' phút, '
+            milliSecond = milliSecond % 60000
+
+            timerString += Math.floor(milliSecond / 1000) + ' giây.'
+
+            return {'timerstring': timerString, 'expired': milliSecond};
+        }
+    }
+}
+
+/** Mark sản phẩm nào đang được mượn*/ 
+function productDetailBorrowedDisplay(object) {
+    //Nếu đến hết hạn thì nút mượn sẽ được hiển thị
+    productDetailTimeout = setTimeout(() => {
+        let productDetailElement = document.getElementById("product-detail");
+        productDetailElement.querySelector(".product-detail__borrowed").style.display = '';
+        for (let item of productDetailElement.querySelectorAll(".product-detail__control-group")) {
+            item.style.display = '';//Hiện các nút Mượn
+        }
+        //Ẩn thời gian  hoàn trả
+        productDetailElement.querySelector(".product-detail__control-timer").style.display = '';
+        productDetailElement.querySelector(".product-detail__control-timer span").innerHTML = 'loading...';
+        clearTimeout(productDetailTimeout);
+        clearInterval(productDetailInterval);
+    }, timeHandle(object).expired);
+
+    // Nếu sản phẩm đang được mượn thì gán nhãn đang được mượn và hiện thời gian hoàn trả
+    if (timeHandle(object).expired > 0) {
+        let productDetailElement = document.getElementById("product-detail");
+        productDetailElement.querySelector(".product-detail__borrowed").style.display = 'block';
+        for (let item of productDetailElement.querySelectorAll(".product-detail__control-group")) {
+            item.style.display = 'none';
+        }
+
+        //hiện thời gian  hoàn trả
+        productDetailElement.querySelector(".product-detail__control-timer").style.display = 'block';
+        productDetailInterval = setInterval(() => {
+            productDetailElement.querySelector(".product-detail__control-timer span").innerHTML = timeHandle(object).timerstring;
+        }, 1000);
     }
 }
