@@ -19,11 +19,6 @@ function scrollToTop() {
 //header sticky và làm nút về đầu trong xuất hiện
 window.onscroll = function() {scrollToTopAppear(); headerSticky();};
 
-/***autocompolete thể loại */
-// var typeNames = ['giáo trình', 'tài liệu tham khảo', 'truyện tranh', 'lập trình'];
-// autocomplete(document.getElementById("typename"), typeNames);
-// console.log(document.getElementById("typename"))
-
 /**Thể loại theo select option */
 var typeNames = ['giáo trình', 'tài liệu tham khảo', 'truyện tranh', 'lập trình', 'tiểu thuyết'];
 typeNames.sort()
