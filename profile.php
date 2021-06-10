@@ -42,16 +42,16 @@
         <div class="row">
           <div class="col-2">
             <div class="tab">
-              <button class="tab__links tab__links--active" onclick="openTab(event, 'profile')">Thông tin cá nhân</button>
+              <button class="tab__links" onclick="openTab(event, 'profile')">Thông tin cá nhân</button>
               <button class="tab__links" onclick="openTab(event, 'storage')">Kho sách của tui</button>
             </div>
           </div>
           <div class="col-10">
-            <div id="profile">
+            <div id="profile" class="tab-content">
               <h1>Trang thông tin cá nhân</h1>
             </div>
     
-            <div id="storage">
+            <div id="storage" class="tab-content">
               <h1>Kho sách của tui</h1>
             </div>
           </div>

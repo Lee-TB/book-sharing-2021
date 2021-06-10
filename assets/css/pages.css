@@ -28,10 +28,6 @@
     color: var(--white-color);
 }
 
-.tab__links + .tab__links {
-    margin-top: 8px;
-}
-
 .tab__links--active::after {
     position: absolute;
     left: 100%;
@@ -39,4 +35,12 @@
     border-style: solid;
     border-width: 1.5rem 0.8rem;
     border-color: transparent transparent transparent var(--primary-color);
+}
+
+.tab__links + .tab__links {
+    margin-top: 8px;
+}
+
+.tab-content {
+    display: none;
 }
