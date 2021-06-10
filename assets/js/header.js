@@ -46,6 +46,10 @@ function closeModal() {
     document.getElementById("log-in").style.display = "";
     document.getElementById("book-form").style.display = "";
     document.getElementById("product-detail").style.display = "";
-    clearTimeout(productDetailTimeout);
-    clearInterval(productDetailInterval);
+    if (typeof productDetailTimeout !== 'undefined') {
+        clearTimeout(productDetailTimeout);
+    }
+    if (typeof productDetailInterval !== 'undefined') {
+        clearInterval(productDetailInterval);
+    }
 }

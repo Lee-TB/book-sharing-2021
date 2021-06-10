@@ -19,7 +19,7 @@ function filterInput (event) {
     }
 }
 
-/***Main content */
+/***Display Product Detail */
 var productItems = document.querySelectorAll('.product-item')
 for (let item of productItems) {
     item.onclick = fetchProductDetail;
@@ -163,7 +163,16 @@ for (let item of productItems) {
                             if (xmlhttp.readyState==4 && xmlhttp.status==200) {
                                 let json = xmlhttp.responseText;
                                 let object = JSON.parse(json);
-                                productDetailBorrowedDisplay(object);           
+                                //hiển thị chi tiết sản phẩm đã được mượn
+                                productDetailBorrowedDisplay(object);
+                                //hiển thị sản phẩm đã được mượn bên ngoài danh sách sản phẩm 
+                                //và đồng thời settimeout để xóa hiển thị nếu thời đã đến hạn hoàn trả
+                                let productItemBorrowed = document.getElementById(idPost+'-product-item').querySelector('.product-item__borrowed')
+                                productItemBorrowed.style.display = 'block';
+                                let productItemTimeOut = setTimeout(() => {
+                                    productItemBorrowed.style.display = '';
+                                    clearTimeout(productItemTimeOut);//clear chính nó
+                                }, timeHandle(object).expired);
                             }
                         }
 
@@ -177,53 +186,16 @@ for (let item of productItems) {
                     }
                 }
                 
-                
-
                 /**Gọi hàm vừa tạo */
-                productDetailBorrowedDisplay(dataProduct)
+                if (dataProduct.borrowed && timeHandle(dataProduct).expired > 0) {
+                    productDetailBorrowedDisplay(dataProduct)
+                }
             }
         }
         xmlhttp.open("GET","../layouts/productDetail.php?idpost="+idPost, true);
         xmlhttp.send();
         openModal()
         openProductDetail()
-    }
-}
-
-// Xử lý việc hiển thị thời gian hoàn trả sách
-function timeHandle(object) {
-    if (object['borrowed'] == true) {
-        //nếu cho luôn thì không cần tính thời gian hoàn trả
-        if (object['loanterm'].indexOf('forever') != -1) {
-            return 'Sách đã được tặng cho người khác';
-        } else {
-            // let days;
-            // if (object['loanterm'].indexOf('week') != -1) {
-            //     days = parseInt(object['loanterm']) * 7;
-            // }
-            // if (object['loanterm'].indexOf('month') != -1) {
-            //     days = parseInt(object['loanterm']) * 30;
-            // }
-            let loanTime = object['loantime'].replaceAll(' ', "T");
-            let dateTime = new Date(Date.parse(loanTime));
-            // dateTime.setDate(dateTime.getDate() + days);
-            dateTime.setSeconds(dateTime.getSeconds() + 10)
-            let milliSecond = dateTime.valueOf() - new Date().valueOf();
-
-            let timerString = '';
-            timerString += Math.floor(milliSecond / 86400000) + ' ngày, '
-            milliSecond = milliSecond % 86400000
-
-            timerString += Math.floor(milliSecond / 3600000) + ' giờ, '
-            milliSecond = milliSecond % 3600000
-
-            timerString += Math.floor(milliSecond / 60000) + ' phút, '
-            milliSecond = milliSecond % 60000
-
-            timerString += Math.floor(milliSecond / 1000) + ' giây.'
-
-            return {'timerstring': timerString, 'expired': milliSecond};
-        }
     }
 }
 
@@ -251,7 +223,7 @@ function productDetailBorrowedDisplay(object) {
             item.style.display = 'none';
         }
 
-        //hiện thời gian  hoàn trả
+        //hiện thời gian  hoàn trả theo hoạt ảnh giảm dần
         productDetailElement.querySelector(".product-detail__control-timer").style.display = 'block';
         productDetailInterval = setInterval(() => {
             productDetailElement.querySelector(".product-detail__control-timer span").innerHTML = timeHandle(object).timerstring;

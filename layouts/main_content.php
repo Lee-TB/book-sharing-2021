@@ -77,30 +77,33 @@
 </div>
 
 <?php
-    $arr = array();
+    $arrayOfObjects = array();
 
     $sql =  "SELECT `idpost`, `bookname`, `fullname`, `posttime`, `iduser`, `photo` ".
     "FROM `post` ".
         "INNER JOIN `user` ON `post`.`iduser` = `user`.`id` ".
         "INNER JOIN `book` ON `post`.`idbook` = `book`.`idbook` ".
     "ORDER BY `bookname`";
-    $resultProducts = $connectDatabase->query($sql);
-    for ($i=1; $i<=$resultProducts->num_rows; $i++) {
-        $dataProducts = $resultProducts->fetch_assoc();
-        $idPost = $dataProducts['idpost'];
-        $sql = "SELECT * FROM `loan` WHERE `idpost` = '$idPost'";
-        $result = $connectDatabase->query($sql);
-        if ($result->num_rows > 0){
-            $dataProduct = $result->fetch_assoc();
-            $dataProducts['loantime'] = $dataProduct['loantime'];
-            $dataProducts['loanterm'] = $dataProduct['loanterm'];
-            $dataProducts['borrowed'] = 1;
+    $resultPostUserBook = $connectDatabase->query($sql);
+    for ($i=1; $i<=$resultPostUserBook->num_rows; $i++) {
+        $dataPostUserBook = $resultPostUserBook->fetch_assoc();
+        $idPost = $dataPostUserBook['idpost'];
+
+        $sql = "SELECT * FROM `loan` WHERE `idpost` = '$idPost' ORDER BY `idloan` DESC LIMIT 1";
+        $resultLoan = $connectDatabase->query($sql);
+
+        if ($resultLoan->num_rows > 0){
+            $dataLoan = $resultLoan->fetch_assoc();
+
+            $dataPostUserBook['loantime'] = $dataLoan['loantime'];
+            $dataPostUserBook['loanterm'] = $dataLoan['loanterm'];
+            $dataPostUserBook['borrowed'] = 1;
         } else {
-            $dataProducts['borrowed'] = 0;
+            $dataPostUserBook['borrowed'] = 0;
         }
-        array_push($arr, $dataProducts);
+        array_push($arrayOfObjects, $dataPostUserBook);
     }
-    $myJSON = json_encode($arr);
+    $myJSON = json_encode($arrayOfObjects);
 ?>
 
 <script>
@@ -122,49 +125,17 @@
                                     '<p class="product-item__user-post">Người đăng:<br>'+myJson[i].fullname+'</p>'+
                                     '<p class="product-item__time-post">Được đăng lúc:<br>'+myJson[i].posttime+'</p>'+
                                 '</div>';
-        if (timeHandle(myJson[i]).expired > 0) {
-            divCol_24.querySelector('.product-item__borrowed').style.display = 'block';
-        } else {
-            divCol_24.querySelector('.product-item__borrowed').style.display = '';
-        }
-        console.log(timeHandle(myJson[i]))
-        productContainer.appendChild(divCol_24);
-    }
-
-    /**Xử lý việc hiển thị thời gian hoàn trả sách*/ 
-    function timeHandle(object) {
-        if (object['borrowed'] == true) {
-            //nếu cho luôn thì không cần tính thời gian hoàn trả
-            if (object['loanterm'].indexOf('forever') != -1) {
-                return 'Sách đã được tặng cho người khác';
-            } else {
-                // let days;
-                // if (object['loanterm'].indexOf('week') != -1) {
-                //     days = parseInt(object['loanterm']) * 7;
-                // }
-                // if (object['loanterm'].indexOf('month') != -1) {
-                //     days = parseInt(object['loanterm']) * 30;
-                // }
-                let loanTime = object['loantime'].replaceAll(' ', "T");
-                let dateTime = new Date(Date.parse(loanTime));
-                // dateTime.setDate(dateTime.getDate() + days);
-                dateTime.setSeconds(dateTime.getSeconds() + 5)
-                let milliSecond = dateTime.valueOf() - new Date().valueOf();
-
-                let timerString = '';
-                timerString += Math.floor(milliSecond / 86400000) + ' ngày, '
-                milliSecond = milliSecond % 86400000
-
-                timerString += Math.floor(milliSecond / 3600000) + ' giờ, '
-                milliSecond = milliSecond % 3600000
-
-                timerString += Math.floor(milliSecond / 60000) + ' phút, '
-                milliSecond = milliSecond % 60000
-
-                timerString += Math.floor(milliSecond / 1000) + ' giây.'
-
-                return {'timerstring': timerString, 'expired': milliSecond};
+        // console.log(myJson[i])
+        if (typeof timeHandle(myJson[i]) !== 'undefined') {
+            if (timeHandle(myJson[i]).expired > 0) {
+                let productItemBorrowed = divCol_24.querySelector('.product-item__borrowed');
+                productItemBorrowed.style.display = 'block';
+                let productItemTimeOut = setTimeout(() => {
+                    productItemBorrowed.style.display = ''; //đến hạn thì biến mất đánh dấu đã mượn
+                    clearTimeout(productItemTimeOut);//clear chính nó
+                }, timeHandle(myJson[i]).expired);
             }
         }
+        productContainer.appendChild(divCol_24);
     }
 </script>

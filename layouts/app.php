@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="../assets/css/base.css">
   <link rel="stylesheet" href="../assets/css/layout.css">
   <link rel="stylesheet" href="../assets/css/components.css">
-
+  <script src="../assets/js/myLibrary.js"></script>
 </head>
 <body>
   <!-- Modal, đăng ký, đăng nhập "modal không tách rời khỏi phần header"-->
@@ -40,7 +40,6 @@
     <?php include_once "main_content.php";?>
   </section>
 
-  <script src="../assets/js/myLibrary.js"></script>
   <script src="../assets/js/header.js"></script>
   <script src="../assets/js/wrapper.js"></script>
   <script src="../assets/js/form.js"></script>
