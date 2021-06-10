@@ -7,7 +7,7 @@
                         <img src="../assets/images/logoChiaSeSach.png" alt="" height="110px">
                     </a>
                 </div>
-                
+
                 <div class="col-8"></div>
 
                 <?php 
@@ -17,7 +17,7 @@
                 <div class="hello-user col-2">
                     <div class="hello-user__full-name"><?php echo $dataUser['fullname']; ?></div>
                     <div class="hello-user__avatar">
-                        <a href="#" class="hello-user__avatar-link" style="background-image: url(<?php echo $dataUser['avatar']; ?>);"></a>
+                        <a href="profile.php" class="hello-user__avatar-link" style="background-image: url(<?php echo $dataUser['avatar']; ?>);"></a>
                     </div>
                 </div>
                 <?php 

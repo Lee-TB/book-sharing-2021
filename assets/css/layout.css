@@ -130,6 +130,7 @@
 #header .search-title,
 #header .search-icon {
     color: var(--text-color);
+    margin: auto;
 }
 
 /* hộp tìm kiếm */
