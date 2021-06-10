@@ -16,7 +16,7 @@
 }
 
 #header .logo-header {
-
+    text-align: center;
 }
 
 #header .logo-header-link {
@@ -27,6 +27,28 @@
 
 #header .hello-user {
     color: var(--white-color);
+    text-align: center;
+}
+
+#header .hello-user__full-name {
+    font-size: 1.2rem;
+    line-height: 1.2rem;
+    margin-top: 4px;
+}
+
+#header .hello-user__avatar {
+    display: flex;
+    height: calc(100% - 1.2rem - 4px);
+}
+
+#header .hello-user__avatar-link {
+    margin: auto;
+    height: calc(90px - 1.2rem - 4px);
+    width: calc(90px - 1.2rem - 4px);
+    background-size: contain;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    border: 2px solid var(--white-color);
 }
 
 /* Header Menu */
@@ -484,3 +506,12 @@
 }
 
 
+#footer {
+    display: flex;
+    background-color: var(--primary-color);
+}
+
+#footer h1 {
+    color: var(--white-color);
+    margin: auto;
+}

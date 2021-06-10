@@ -36,9 +36,12 @@
 
   <!-- phần header -->
   <?php include_once "header.php";?>
+
   <section id="wrapper">
     <?php include_once "main_content.php";?>
   </section>
+
+  <?php include_once "footer.php";?>
 
   <script src="../assets/js/header.js"></script>
   <script src="../assets/js/wrapper.js"></script>

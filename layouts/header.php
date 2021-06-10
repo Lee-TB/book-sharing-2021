@@ -2,20 +2,27 @@
     <div class="header-top">
         <div class="container">
             <div class="row">
-                <!-- <div class="col-12"> -->
-                    <div class="logo-header col-9">
-                        <a href="../index.php" class="logo-header-link">
-                            <img src="../assets/images/logoChiaSeSach.png" alt="" height="110px">
-                        </a>
+                <div class="logo-header col-2">
+                    <a href="../index.php" class="logo-header-link">
+                        <img src="../assets/images/logoChiaSeSach.png" alt="" height="110px">
+                    </a>
+                </div>
+                
+                <div class="col-8"></div>
+
+                <?php 
+                    include_once "fetchDataUser.php";
+                    if (isset($dataUser)) {
+                ?>
+                <div class="hello-user col-2">
+                    <div class="hello-user__full-name"><?php echo $dataUser['fullname']; ?></div>
+                    <div class="hello-user__avatar">
+                        <a href="#" class="hello-user__avatar-link" style="background-image: url(<?php echo $dataUser['avatar']; ?>);"></a>
                     </div>
-
-
-                    <?php include_once "fetchDataUser.php";
-                        if (isset($dataUser)) {
-                            echo '<div class="hello-user col-3">Xin chào: '.$dataUser['fullname'].'</div>';
-                        }
-                    ?>
-                <!-- </div> -->
+                </div>
+                <?php 
+                    }
+                ?>
             </div>
         </div>
     </div>
