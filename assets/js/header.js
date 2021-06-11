@@ -53,3 +53,17 @@ function closeModal() {
         clearInterval(productDetailInterval);
     }
 }
+
+function linkToPageAndOpenTab(event, idContent) {
+    if (location.pathname.indexOf('index.php') != -1) {
+        location.href = 'profile.php?idcontent='+idContent;
+    }
+    //openTab function only run on profile.php
+    openTab(event, idContent)
+}
+
+// function onpenTabDefault() {
+//     console.log(location.href)
+// }
+
+// onpenTabDefault()

@@ -192,13 +192,13 @@
 
 .submit-btn {
     background-color: var(--primary-color);
-    color: var(--black-color);
+    color: var(--white-color);
     margin: 0 10px;
     font-size: 1.1rem;
 }
 
 .submit-btn:hover {
-    background-color: rgba(8, 187, 183, 0.7);
+    background-color: var(--primary-color-hover);
     color: var(--white-color);
 }
 

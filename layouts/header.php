@@ -74,24 +74,24 @@
                         <ul class="user-drop-down">
                             <!-- Khi chưa Log In -->
                             <li class="user-drop-down_item">
-                                <button class="user-drop-down_button btn" onclick="openModal(); openLogIn();">Đăng Nhập</button>
+                                <button class="user-drop-down_button" onclick="openModal(); openLogIn();">Đăng Nhập</button>
                             </li>
 
                             <li class="user-drop-down_item">
-                                <button class="user-drop-down_button btn" onclick="openModal(); onpenSignUp();">Tạo Tài Khoản</button>
+                                <button class="user-drop-down_button" onclick="openModal(); onpenSignUp();">Tạo Tài Khoản</button>
                             </li>
 
                             <!-- Khi đã Log In -->
                             <li class="user-drop-down_item logged">
-                                <button class="user-drop-down_button btn">Trang Cá Nhân</button>
+                                <button class="user-drop-down_button button-of-profile" onclick="linkToPageAndOpenTab(event,'profile')">Trang Cá Nhân</button>
                             </li>
 
                             <li class="user-drop-down_item logged">
-                                <button class="user-drop-down_button btn">Kho Sách Của Tui</button>
+                                <button class="user-drop-down_button button-of-storage" onclick="linkToPageAndOpenTab(event, 'storage')">Kho Sách Của Tui</button>
                             </li>
 
                             <li class="user-drop-down_item logged">
-                                <button class="user-drop-down_button btn" onclick="location.href='../server/clients/logout.php';">
+                                <button class="user-drop-down_button" onclick="location.href='../server/clients/logout.php';">
                                     Đăng Xuất
                                 </button>
                             </li>

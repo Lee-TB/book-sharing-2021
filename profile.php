@@ -42,8 +42,8 @@
         <div class="row">
           <div class="col-2">
             <div class="tab">
-              <button class="tab__links" onclick="openTab(event, 'profile')">Thông tin cá nhân</button>
-              <button class="tab__links" onclick="openTab(event, 'storage')">Kho sách của tui</button>
+              <button class="tab__links button-of-profile" onclick="openTab(event, 'profile')">Thông tin cá nhân</button>
+              <button class="tab__links button-of-storage" onclick="openTab(event, 'storage')">Kho sách của tui</button>
             </div>
           </div>
           <div class="col-10">

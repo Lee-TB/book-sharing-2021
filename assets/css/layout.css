@@ -233,7 +233,7 @@
     background-color: #fff;
     box-shadow: rgb(25 25 25 / 30%) 0 1px 3px;
     cursor: pointer;
-    display: none;
+    /* display: none; */
 }
 
 #header .user-drop-down::before {
@@ -268,14 +268,21 @@
     padding-top: 12px;
 }
 
-#header .user-drop-down_button{
-    background-color: var(--primary-color);
+#header .user-drop-down_button {
+    background-color: var(--black-color);
+    color: var(--white-color);
     width: 100%;
+    padding: 8px 0;
+    border-radius: 2px;
+    font-weight: 500;
+}
+
+#header .user-drop-down_button--active {
+    background-color: var(--primary-color);
 }
 
 #header .user-drop-down_button:hover {
-    background-color: var(--black-color);
-    color: var(--white-color);
+    background-color: var(--primary-color-hover);
 }
 
 #header .logged {
