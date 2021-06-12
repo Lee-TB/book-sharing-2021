@@ -52,7 +52,8 @@
 
 /* profile */
 
-.profile-title {
+.profile-title,
+.storage-title {
     font-size: 2.4rem;
     font-weight: 500;
     margin-bottom: 20px;
@@ -88,4 +89,35 @@
 
 #profile-info__update-message {
     color: var(--success-color);
+}
+
+/* CSS for storage */
+.storage-container table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.storage-container tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.storage-container table th {
+    padding: 12px;
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    font-size: 1.2rem;
+}
+
+.storage-container td {
+    padding: 6px 2px;
+    text-align: center;
+}
+
+.storage-container td:first-child {
+    max-width: 500px;
+}
+
+.storage-container th,
+.storage-container td {
+    border: 1px solid #ccc;
 }

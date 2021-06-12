@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Chia Sẻ Sách | Trang cá nhân</title>
+  <link rel="shortcut icon" href="../assets/images/logoChiaSeSach.png" type="image/x-icon">
   <script src="https://kit.fontawesome.com/bac5106e3c.js" crossorigin="anonymous"></script>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">    
@@ -98,8 +99,51 @@
             </div>
     
             <div id="storage" class="tab-content">
-              <h1>Kho sách của tui</h1>
+              <div class="storage-title">Kho sách của tui</div>
+
+              <div class="storage-container">
+                <table>
+                  <tr>
+                    <th>Tên sách</th>
+                    <th>Tác giả</th>
+                    <th>Đăng lúc</th>
+                    <th>Người mượn</th>
+                    <th>Tùy chọn</th>
+                  </tr>
+
+                  <tr>
+                    <td>Giáo trình Hệ quản trị cơ sở dữ liệu MS Access Giáo trình Hệ quản trị cơ sở dữ liệu MS Access</td>
+                    <td>TS. Nguyễn Hữu Hòa & ThS. Nguyễn Đức Khoa</td>
+                    <td>2021-05-30 17:58:18</td>
+                    <td>Dương Trung Hiền</td>
+                    <td>
+                      <button class="my-btn my-btn--danger">Xóa</button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>Giáo trình Hệ quản trị cơ sở dữ liệu MS Access Giáo trình Hệ quản trị cơ sở dữ liệu MS Access</td>
+                    <td>TS. Nguyễn Hữu Hòa & ThS. Nguyễn Đức Khoa</td>
+                    <td>2021-05-30 17:58:18</td>
+                    <td>Dương Trung Hiền</td>
+                    <td>
+                      <button class="my-btn my-btn--danger">Xóa</button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>Giáo trình Hệ quản trị cơ sở dữ liệu MS Access Giáo trình Hệ quản trị cơ sở dữ liệu MS Access</td>
+                    <td>TS. Nguyễn Hữu Hòa & ThS. Nguyễn Đức Khoa</td>
+                    <td>2021-05-30 17:58:18</td>
+                    <td>Dương Trung Hiền</td>
+                    <td>
+                      <button class="my-btn my-btn--danger">Xóa</button>
+                    </td>
+                  </tr>
+                </table>
+              </div>
             </div>
+
           </div>
         </div>
       </div>

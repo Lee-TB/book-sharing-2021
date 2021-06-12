@@ -219,6 +219,11 @@
 
 .my-btn--danger {
     background-color: #ea1601;
+    color: var(--white-color);
+}
+
+.my-btn--danger:hover {
+    filter: brightness(120%);
 }
 
 .my-btn--warning {
