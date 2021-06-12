@@ -62,8 +62,22 @@ function linkToPageAndOpenTab(event, idContent) {
     openTab(event, idContent)
 }
 
-// function onpenTabDefault() {
-//     console.log(location.href)
-// }
-
-// onpenTabDefault()
+function openTabDefault() {
+    if (location.pathname.indexOf('profile.php') != -1) {
+        var url_string = location.href
+        var url = new URL(url_string);
+        var idContent = url.searchParams.get('idcontent');
+        
+        document.getElementById(idContent).style.display = 'block'
+        if (document.getElementById(idContent).style.display == 'block') {
+            for (let item of document.getElementsByClassName('tab__links')) {
+                if (item.classList[1] != undefined) {
+                    if (item.classList[1].indexOf(idContent) != -1) {
+                        item.classList.add(item.classList[0]+'--active')
+                    }
+                }
+            }
+        }
+    }
+}
+openTabDefault()

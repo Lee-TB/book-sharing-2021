@@ -233,7 +233,7 @@
     background-color: #fff;
     box-shadow: rgb(25 25 25 / 30%) 0 1px 3px;
     cursor: pointer;
-    /* display: none; */
+    display: none;
 }
 
 #header .user-drop-down::before {
