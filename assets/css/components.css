@@ -213,6 +213,18 @@
     position: relative;
 }
 
+.my-btn--success {
+    background-color: #64bc26;
+}
+
+.my-btn--danger {
+    background-color: #ea1601;
+}
+
+.my-btn--warning {
+    background-color: #fad202;
+}
+
 .my-btn-primary {
     background-color: var(--primary-color);
     color: var(--white-color);
@@ -235,6 +247,7 @@
 
 .my-btn-xl {
     padding: 8px 24px;
+    font-weight: 500;
     font-size: 1.2rem;
 }
 

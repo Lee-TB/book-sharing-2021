@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="./assets/css/components.css">
   <link rel="stylesheet" href="./assets/css/pages.css">
   <script src="./assets/js/myLibrary.js"></script>
+  <script>if (getCookie('id') == '') {location.href = 'index.php'}</script>
 </head>
 <body>
   <!-- Modal, đăng ký, đăng nhập "modal không tách rời khỏi phần header"-->
@@ -48,7 +49,46 @@
           </div>
           <div class="col-10">
             <div id="profile" class="tab-content">
-              <h1>Trang thông tin cá nhân</h1>
+              <div class="profile-title">Thông tin tài khoản</div>
+              <form id="profile-info">
+                <div class="profile-info__form-group">
+                  <label for="profile-info__fullname" class="profile-info__label">Họ tên</label>
+                  <input type="text" id="profile-info__fullname" value="Trần Bùi Lý Đức">
+                </div>
+
+                <div class="profile-info__form-group">
+                  <label class="profile-info__label">Giới tính</label>
+
+                  <div class="gender">
+                      <input type="radio" id="male" name="gender" value="Nam">
+                      <label for="male">Nam</label>
+                  </div>
+
+                  <div class="gender">
+                      <input type="radio" id="female" name="gender" value="Nữ">
+                      <label for="female">Nữ</label>
+                  </div>
+
+                  <div class="gender">
+                      <input type="radio" id="other" name="gender" value="Khác">
+                      <label for="other">Khác</label>
+                  </div>
+                </div>
+
+                <div class="profile-info__form-group">
+                  <label for="profile-info__phone" class="profile-info__label">Số điện thoại</label>
+                  <input type="text" id="profile-info__phone" value="0337611246">
+                </div>
+
+                <div class="profile-info__form-group">
+                  <label for="profile-info__gmail" class="profile-info__label">Gmail</label>
+                  <input type="text" id="profile-info__gmail" value="tblyduc2412@gmail.com">
+                </div>
+                
+                <div class="profile-info__form-group" style="justify-content: flex-end;">
+                  <button id="profile-info__update-button" class="my-btn my-btn--warning my-btn-xl">Cập nhật</button>
+                </div>
+              </form>
             </div>
     
             <div id="storage" class="tab-content">

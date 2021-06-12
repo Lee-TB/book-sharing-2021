@@ -42,5 +42,46 @@
 }
 
 .tab-content {
+    background-color: var(--white-color);
+    border-radius: 3px;
+    padding: 10px;
+    min-width: 1px;
     display: none;
+}
+
+
+/* profile */
+
+.profile-title {
+    font-size: 2.4rem;
+    font-weight: 500;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+}
+
+#profile-info {
+    font-size: 1.2rem;
+    width: 50%;
+}
+
+.profile-info__form-group {
+    display: flex;
+    align-items: center;
+}
+
+.profile-info__form-group+.profile-info__form-group {
+    margin-top: 16px;
+}
+
+.profile-info__label {
+    width: 100px;
+}
+
+.profile-info__form-group input[type=text] {
+    display: flex;
+    flex: 1;
+    padding: 4px 6px;
+    outline: none;
+    border: 1px solid #ccc;
+    border-radius: 3px;
 }
