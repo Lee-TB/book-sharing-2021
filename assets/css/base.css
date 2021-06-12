@@ -7,6 +7,9 @@ hiển thị giống nhau ví dụ: reset, typography, utilities, animation */
     --black-color: #000;
     --white-color: #fff;
     --text-color: #333;
+    --success-color: #64bc26;
+    --danger-color: #ea1601;
+    --warning-color: #fad202;
 }
 
 .primary-color {

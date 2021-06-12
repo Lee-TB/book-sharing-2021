@@ -17,7 +17,7 @@
                 <div class="hello-user col-2">
                     <div class="hello-user__full-name"><?php echo $dataUser['fullname']; ?></div>
                     <div class="hello-user__avatar">
-                        <a href="profile.php" class="hello-user__avatar-link" style="background-image: url(<?php echo $dataUser['avatar']; ?>);"></a>
+                        <a href="profile.php?idcontent=profile" class="hello-user__avatar-link" style="background-image: url(<?php echo $dataUser['avatar']; ?>);"></a>
                     </div>
                 </div>
                 <?php 

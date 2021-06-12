@@ -85,3 +85,7 @@
     border: 1px solid #ccc;
     border-radius: 3px;
 }
+
+#profile-info__update-message {
+    color: var(--success-color);
+}

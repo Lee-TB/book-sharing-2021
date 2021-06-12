@@ -50,10 +50,11 @@
           <div class="col-10">
             <div id="profile" class="tab-content">
               <div class="profile-title">Thông tin tài khoản</div>
-              <form id="profile-info">
+              <?php require_once "layouts/fetchDataUser.php"?>
+              <div id="profile-info">
                 <div class="profile-info__form-group">
                   <label for="profile-info__fullname" class="profile-info__label">Họ tên</label>
-                  <input type="text" id="profile-info__fullname" value="Trần Bùi Lý Đức">
+                  <input type="text" id="profile-info__fullname" value="<?php echo $dataUser['fullname'];?>">
                 </div>
 
                 <div class="profile-info__form-group">
@@ -77,18 +78,23 @@
 
                 <div class="profile-info__form-group">
                   <label for="profile-info__phone" class="profile-info__label">Số điện thoại</label>
-                  <input type="text" id="profile-info__phone" value="0337611246">
+                  <input type="text" id="profile-info__phone" value="<?php echo $dataUser['phone'];?>">
                 </div>
 
                 <div class="profile-info__form-group">
                   <label for="profile-info__gmail" class="profile-info__label">Gmail</label>
-                  <input type="text" id="profile-info__gmail" value="tblyduc2412@gmail.com">
+                  <input type="text" id="profile-info__gmail" value="<?php echo $dataUser['gmail'];?>">
                 </div>
                 
                 <div class="profile-info__form-group" style="justify-content: flex-end;">
-                  <button id="profile-info__update-button" class="my-btn my-btn--warning my-btn-xl">Cập nhật</button>
+                  <button id="profile-info__update-button" class="my-btn my-btn--warning my-btn-xl" onclick="updateProfile()">Cập nhật</button>
                 </div>
-              </form>
+
+                <div class="profile-info__form-group">
+                  <div id="profile-info__update-message">
+                  </div>
+                </div>
+              </div>
             </div>
     
             <div id="storage" class="tab-content">
@@ -110,6 +116,12 @@
   <script src="./assets/js/app.js"></script>
   <script>
       Validator("#book-form");
+      var genderValue = '<?php echo $dataUser['gender'];?>'
+      for (let radio of document.getElementsByName('gender')) {
+        if (radio.value == genderValue) {
+          radio.checked = true
+        }
+      }
   </script>
 </body>
 </html>
