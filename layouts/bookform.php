@@ -1,4 +1,4 @@
-<form id="book-form" class="form" action="../server/clients/bookformhandle.php" method="POST" autocomplete="off" enctype="multipart/form-data">
+<form id="book-form" class="form" action="../server/clients/bookformhandle.php?page-call=" method="POST" autocomplete="off" enctype="multipart/form-data">
     <div class="form-header">
         <div class="form-title">Thêm sách</div>
     </div>
@@ -78,15 +78,6 @@
             <input type="checkbox" name="optionloan[]" id="optionloan6" value="forever" class="input-option-loan">
 
         </div>
-
-        <!-- <div class="form-group">
-            <div class="autocomplete">
-                <input type="text" class="form-input book-form__input" id="typename" name="typename" rules="required" placeholder="Thể loại">
-            </div>
-            <i class="fas fa-check-circle form-group-icon form-group-icon_success"></i>
-            <i class="fas fa-exclamation-triangle form-group-icon form-group-icon_danger"></i>
-            <div class="form-message"></div>
-        </div> -->
         
     </div>
 
@@ -95,3 +86,6 @@
         <button type="submit" class="btn submit-btn">Thêm Sách</button>
     </div>
 </form>
+<script>
+    document.getElementById('book-form').action = document.getElementById('book-form').action + location.pathname
+</script>

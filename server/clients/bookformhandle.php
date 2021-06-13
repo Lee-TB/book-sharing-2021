@@ -111,8 +111,7 @@ if(isset($_COOKIE['id']) && $_POST !== array() && $_FILES !== array()) {
         echo "Error: " . $sql . "<br>" . $connectDatabase->error;
         setcookie('added-book', "false", time() + 1, '/');
     }
-    
-    header("location: ../../index.php");
+    header("location: ../..".$_GET['page-call']);
 } else {
     echo 'Lỗi!! Có thể bạn chưa đăng nhập hoặc Biến siêu toàn cục files và post không có thông tin';
 }

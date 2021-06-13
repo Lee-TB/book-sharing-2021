@@ -32,7 +32,7 @@
             <div class="row">
                 <div class="col-2">
                     <div class="menu-item">
-                        <a href="#" class="menu-item-link">Trang Chủ</a>
+                        <a href="../index.php" class="menu-item-link">Trang Chủ</a>
                     </div>
                 </div>
 
