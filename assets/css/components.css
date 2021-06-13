@@ -222,7 +222,9 @@
     color: var(--white-color);
 }
 
-.my-btn--danger:hover {
+.my-btn--success:hover,
+.my-btn--danger:hover,
+.my-btn--warning:hover {
     filter: brightness(120%);
 }
 

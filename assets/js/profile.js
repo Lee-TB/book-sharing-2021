@@ -78,13 +78,17 @@ function fetchDataStorage(idUser) {
                 '<td>'+arrayOject[i].author+'</td>'+
                 '<td>'+arrayOject[i].posttime+'</td>'+
                 '<td>'+
-                    arrayOject[i].fullname+
+                    (arrayOject[i].fullname==null?'Chưa được mượn':arrayOject[i].fullname)+
                 '</td>'+
                 '<td>'+
                     '<button class="my-btn my-btn--warning">Sửa</button>'+
-                    '<button class="my-btn my-btn--danger">Xóa</button>'+
+                    '<button class="my-btn my-btn--danger" onclick="if (confirm(\'Sách sẽ bị xóa\')) {deleteBook(this)}">Xóa</button>'+
                 '</td>';
-                console.log(document.querySelector('#storage table').appendChild(tr))
+                tr.id = arrayOject[i].idpost+'-post-storage'
+                document.querySelector('#storage table tbody').appendChild(tr)
+                if (arrayOject[i].fullname==null) {
+                    console.log(tr.querySelectorAll('td')[3].classList.add('text-disable'))
+                }
             }
         }
     }
@@ -93,3 +97,26 @@ function fetchDataStorage(idUser) {
     xmlhttp.send();
 }
 fetchDataStorage(getCookie('id'))// call when page load
+
+/**Storage delete item */
+function deleteBook(element) {
+    var idPost = parseInt(element.parentElement.parentElement.id)
+    // console.log(idPost)
+    var xmlhttp;
+    if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp=new XMLHttpRequest();
+    } else { // code for IE6, IE5
+        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange=function() {
+        if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+            document.querySelector('#storage table tbody').innerHTML = '';
+            fetchDataStorage(getCookie('id'))// call when delete to reload
+            alert(this.responseText)
+        }
+    }
+
+    xmlhttp.open("POST", "../server/clients/deletePost.php", true);
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlhttp.send("idpost="+idPost);
+}

@@ -25,6 +25,7 @@
 
       <div class="close-modal" onclick="closeModal();"><i class="fas fa-times close-modal-icon"></i></div>
       <?php include_once "./layouts/bookform.php";?>
+      <?php include_once "./layouts/alterbookform.php";?>
       <div id="product-detail">
 
       </div>
@@ -103,13 +104,18 @@
 
               <div class="storage-container">
                 <table>
-                  <tr>
-                    <th>Tên sách</th>
-                    <th>Tác giả</th>
-                    <th>Đăng lúc</th>
-                    <th>Người mượn</th>
-                    <th>Tùy chọn</th>
-                  </tr>
+                  <thead>
+                    <tr>
+                      <th>Tên sách</th>
+                      <th>Tác giả</th>
+                      <th>Đăng lúc</th>
+                      <th>Người mượn</th>
+                      <th>Tùy chọn</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+
+                  </tbody>
                 </table>
               </div>
             </div>
@@ -120,7 +126,7 @@
     </div>
   </section>
 
-  <!-- <?php include_once "./layouts/footer.php";?> -->
+  <?php include_once "layouts/footer.php";?> 
 
   <script src="./assets/js/header.js"></script>
   <script src="./assets/js/profile.js"></script>

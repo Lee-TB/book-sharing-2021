@@ -111,6 +111,11 @@
 .storage-container td {
     padding: 6px 2px;
     text-align: center;
+    min-width: 100px;
+}
+
+.text-disable {
+    filter: opacity(0.6);
 }
 
 .storage-container td:first-child {

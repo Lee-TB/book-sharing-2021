@@ -517,6 +517,7 @@
 #footer {
     display: flex;
     background-color: var(--primary-color);
+    height: 200px;
 }
 
 #footer h1 {

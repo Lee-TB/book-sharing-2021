@@ -3,7 +3,7 @@
         require_once "../../connection.php";
         $iduser = $_GET['iduser'];
 
-        $sql = "SELECT `iduser`, `bookname`, `author`, `posttime`, `fullname`".
+        $sql =  "SELECT `post`.`idpost`, `bookname`, `author`, `posttime`, `fullname`".
                 "FROM `post` ".
                 "INNER JOIN `book` ON `post`.`idbook` = `book`.`idbook` ".
                 "LEFT JOIN `loan` ON `post`.`idpost` = `loan`.`idpost` ".
