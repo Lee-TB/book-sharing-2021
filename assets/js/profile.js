@@ -57,3 +57,39 @@ function updateProfile() {
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xmlhttp.send('iduser='+idUser+'&fullname='+fullNameValue+'&gender='+genderValue+'&phone='+phoneValue+'&gmail='+gmailValue);
 }
+
+/**fetch data storage ajax */
+function fetchDataStorage(idUser) {
+    var xmlhttp;
+    if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp=new XMLHttpRequest();
+    } else { // code for IE6, IE5
+        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+
+    xmlhttp.onreadystatechange=function() {
+        if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+            var arrayOject = JSON.parse(xmlhttp.responseText)
+            // console.log(arrayOject)
+            for (let i=0; i<arrayOject.length; i++) {
+                var tr = document.createElement('tr');
+                tr.innerHTML = ''+
+                '<td>'+arrayOject[i].bookname+'</td>'+
+                '<td>'+arrayOject[i].author+'</td>'+
+                '<td>'+arrayOject[i].posttime+'</td>'+
+                '<td>'+
+                    arrayOject[i].fullname+
+                '</td>'+
+                '<td>'+
+                    '<button class="my-btn my-btn--warning">Sửa</button>'+
+                    '<button class="my-btn my-btn--danger">Xóa</button>'+
+                '</td>';
+                console.log(document.querySelector('#storage table').appendChild(tr))
+            }
+        }
+    }
+
+    xmlhttp.open("GET", "../server/clients/fetchDataStorage.php?iduser="+idUser, true);
+    xmlhttp.send();
+}
+fetchDataStorage(getCookie('id'))// call when page load

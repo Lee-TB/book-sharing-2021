@@ -55,7 +55,7 @@ function closeModal() {
 }
 
 function linkToPageAndOpenTab(event, idContent) {
-    if (location.pathname.indexOf('index.php') != -1) {
+    if (location.pathname.indexOf('index.php') != -1 || (location.pathname.length == 1 && location.pathname == '/')) {
         location.href = 'profile.php?idcontent='+idContent;
     }
     //openTab function only run on profile.php

@@ -121,3 +121,7 @@
 .storage-container td {
     border: 1px solid #ccc;
 }
+
+.storage-container button+button {
+    margin-left: 2px;
+}

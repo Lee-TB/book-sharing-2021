@@ -110,36 +110,6 @@
                     <th>Người mượn</th>
                     <th>Tùy chọn</th>
                   </tr>
-
-                  <tr>
-                    <td>Giáo trình Hệ quản trị cơ sở dữ liệu MS Access Giáo trình Hệ quản trị cơ sở dữ liệu MS Access</td>
-                    <td>TS. Nguyễn Hữu Hòa & ThS. Nguyễn Đức Khoa</td>
-                    <td>2021-05-30 17:58:18</td>
-                    <td>Dương Trung Hiền</td>
-                    <td>
-                      <button class="my-btn my-btn--danger">Xóa</button>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>Giáo trình Hệ quản trị cơ sở dữ liệu MS Access Giáo trình Hệ quản trị cơ sở dữ liệu MS Access</td>
-                    <td>TS. Nguyễn Hữu Hòa & ThS. Nguyễn Đức Khoa</td>
-                    <td>2021-05-30 17:58:18</td>
-                    <td>Dương Trung Hiền</td>
-                    <td>
-                      <button class="my-btn my-btn--danger">Xóa</button>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>Giáo trình Hệ quản trị cơ sở dữ liệu MS Access Giáo trình Hệ quản trị cơ sở dữ liệu MS Access</td>
-                    <td>TS. Nguyễn Hữu Hòa & ThS. Nguyễn Đức Khoa</td>
-                    <td>2021-05-30 17:58:18</td>
-                    <td>Dương Trung Hiền</td>
-                    <td>
-                      <button class="my-btn my-btn--danger">Xóa</button>
-                    </td>
-                  </tr>
                 </table>
               </div>
             </div>
