@@ -70,7 +70,7 @@ function fetchDataStorage(idUser) {
     xmlhttp.onreadystatechange=function() {
         if (xmlhttp.readyState==4 && xmlhttp.status==200) {
             var arrayOject = JSON.parse(xmlhttp.responseText)
-            console.log(arrayOject)
+            // console.log(arrayOject)
             for (let i=0; i<arrayOject.length; i++) {
                 var tr = document.createElement('tr');
                 tr.innerHTML = ''+
@@ -87,7 +87,7 @@ function fetchDataStorage(idUser) {
                 tr.id = arrayOject[i].idpost+'-post-storage'
                 document.querySelector('#storage table tbody').appendChild(tr)
                 if (arrayOject[i].fullname==null) {
-                    console.log(tr.querySelectorAll('td')[3].classList.add('text-disable'))
+                    tr.querySelectorAll('td')[3].classList.add('text-disable')
                 }
             }
         }

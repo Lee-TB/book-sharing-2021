@@ -29,7 +29,6 @@
 
       <div class="close-modal" onclick="closeModal();"><i class="fas fa-times close-modal-icon"></i></div>
       <?php include_once "./layouts/bookform.php";?>
-      <?php include_once "./layouts/alterbookform.php";?>
       <div id="product-detail">
 
       </div>

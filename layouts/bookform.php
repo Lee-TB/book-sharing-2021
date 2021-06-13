@@ -87,5 +87,8 @@
     </div>
 </form>
 <script>
-    document.getElementById('book-form').action = document.getElementById('book-form').action + location.pathname
+    var pathAndParam = location.href.replace(location.protocol+'//'+location.hostname+':'+location.port, '');
+    console.log(location.href)
+    console.log(pathAndParam)
+    document.getElementById('book-form').action = document.getElementById('book-form').action + pathAndParam
 </script>

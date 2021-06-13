@@ -111,7 +111,14 @@ if(isset($_COOKIE['id']) && $_POST !== array() && $_FILES !== array()) {
         echo "Error: " . $sql . "<br>" . $connectDatabase->error;
         setcookie('added-book', "false", time() + 1, '/');
     }
-    header("location: ../..".$_GET['page-call']);
+
+    if ($_GET['page-call']=='/profileBorrower.php') {
+        $pageCall = '/profile.php?idcontent=storage';
+    } else {
+        $pageCall = $_GET['page-call'];
+    }
+    echo $pageCall;
+    header("location: ../..".$pageCall);
 } else {
     echo 'Lỗi!! Có thể bạn chưa đăng nhập hoặc Biến siêu toàn cục files và post không có thông tin';
 }
