@@ -1,5 +1,5 @@
 /**Script for profile.php */
-function openTab(event, idContent) {
+function openTab(idContent) {
     var tabContents, tabButton
 
     tabButton = document.getElementsByClassName('tab__links')
@@ -70,7 +70,7 @@ function fetchDataStorage(idUser) {
     xmlhttp.onreadystatechange=function() {
         if (xmlhttp.readyState==4 && xmlhttp.status==200) {
             var arrayOject = JSON.parse(xmlhttp.responseText)
-            // console.log(arrayOject)
+            console.log(arrayOject)
             for (let i=0; i<arrayOject.length; i++) {
                 var tr = document.createElement('tr');
                 tr.innerHTML = ''+
@@ -78,10 +78,10 @@ function fetchDataStorage(idUser) {
                 '<td>'+arrayOject[i].author+'</td>'+
                 '<td>'+arrayOject[i].posttime+'</td>'+
                 '<td>'+
-                    (arrayOject[i].fullname==null?'Chưa được mượn':arrayOject[i].fullname)+
+                    (arrayOject[i].fullname==null?'Chưa được mượn':'<a href="profileBorrower.php?idusertake='+arrayOject[i].idusertake+'">'+arrayOject[i].fullname+'</a>')+
                 '</td>'+
                 '<td>'+
-                    '<button class="my-btn my-btn--warning">Sửa</button>'+
+                    // '<button class="my-btn my-btn--warning">Sửa</button>'+
                     '<button class="my-btn my-btn--danger" onclick="if (confirm(\'Sách sẽ bị xóa\')) {deleteBook(this)}">Xóa</button>'+
                 '</td>';
                 tr.id = arrayOject[i].idpost+'-post-storage'
@@ -96,7 +96,7 @@ function fetchDataStorage(idUser) {
     xmlhttp.open("GET", "../server/clients/fetchDataStorage.php?iduser="+idUser, true);
     xmlhttp.send();
 }
-fetchDataStorage(getCookie('id'))// call when page load
+
 
 /**Storage delete item */
 function deleteBook(element) {

@@ -8,7 +8,7 @@
 .tab__links {
     background-color: var(--white-color);
     width: 100%;
-    font-size: 1.1rem;
+    font-size: 0.9rem;
     font-weight: 500;
     line-height: 2.6rem;
     position: relative;
@@ -75,7 +75,7 @@
 }
 
 .profile-info__label {
-    width: 100px;
+    width: 140px;
 }
 
 .profile-info__form-group input[type=text] {

@@ -15,7 +15,11 @@
   <link rel="stylesheet" href="./assets/css/components.css">
   <link rel="stylesheet" href="./assets/css/pages.css">
   <script src="./assets/js/myLibrary.js"></script>
-  <script>if (getCookie('id') == '') {location.href = 'index.php'}</script>
+  <script>
+    if (getCookie('id') == '') {
+      location.href = 'index.php'
+    }
+  </script>
 </head>
 <body>
   <!-- Modal, đăng ký, đăng nhập "modal không tách rời khỏi phần header"-->
@@ -25,6 +29,7 @@
 
       <div class="close-modal" onclick="closeModal();"><i class="fas fa-times close-modal-icon"></i></div>
       <?php include_once "./layouts/bookform.php";?>
+      <?php include_once "./layouts/alterbookform.php";?>
       <div id="product-detail">
 
       </div>
@@ -44,57 +49,40 @@
         <div class="row">
           <div class="col-2">
             <div class="tab">
-              <button class="tab__links button-of-profile" onclick="openTab('profile')">Thông tin cá nhân</button>
-              <button class="tab__links button-of-storage" onclick="openTab('storage')">Kho sách của tui</button>
+              <button class="tab__links button-of-profile" onclick="openTab('profile')">Thông tin người mượn</button>
+              <button style="display: none;" class="tab__links button-of-storage" onclick="openTab('storage')">Kho sách người mượn</button>
             </div>
           </div>
           <div class="col-10">
             <div id="profile" class="tab-content">
               <div class="profile-title">Thông tin tài khoản</div>
-              <?php require_once "layouts/fetchDataUser.php"?>
+              
+              <?php
+                require_once "connection.php";
+                // $sql = "SELECT * FROM `user` "
+                // $connectDatabase
+              ?>
               <div id="profile-info">
                 <div class="profile-info__form-group">
                   <label for="profile-info__fullname" class="profile-info__label">Họ tên</label>
-                  <input type="text" id="profile-info__fullname" value="<?php echo $dataUser['fullname'];?>">
+                  <div id="profile-info__fullname"></div>
                 </div>
 
                 <div class="profile-info__form-group">
                   <label class="profile-info__label">Giới tính</label>
-
-                  <div class="gender">
-                      <input type="radio" id="male" name="gender" value="Nam">
-                      <label for="male">Nam</label>
-                  </div>
-
-                  <div class="gender">
-                      <input type="radio" id="female" name="gender" value="Nữ">
-                      <label for="female">Nữ</label>
-                  </div>
-
-                  <div class="gender">
-                      <input type="radio" id="other" name="gender" value="Khác">
-                      <label for="other">Khác</label>
-                  </div>
+                  <div id="profile-info__gender"></div>
                 </div>
 
                 <div class="profile-info__form-group">
                   <label for="profile-info__phone" class="profile-info__label">Số điện thoại</label>
-                  <input type="text" id="profile-info__phone" value="<?php echo $dataUser['phone'];?>">
+                  <div id="profile-info__phone"></div>
                 </div>
 
                 <div class="profile-info__form-group">
                   <label for="profile-info__gmail" class="profile-info__label">Gmail</label>
-                  <input type="text" id="profile-info__gmail" value="<?php echo $dataUser['gmail'];?>">
+                  <div id="profile-info__gmail"></div>
                 </div>
-                
-                <div class="profile-info__form-group" style="justify-content: flex-end;">
-                  <button id="profile-info__update-button" class="my-btn my-btn--warning my-btn-xl" onclick="updateProfile()">Cập nhật</button>
-                </div>
-
-                <div class="profile-info__form-group">
-                  <div id="profile-info__update-message">
-                  </div>
-                </div>
+            
               </div>
             </div>
     
@@ -126,22 +114,22 @@
   </section>
 
   <?php include_once "layouts/footer.php";?> 
-  
+
   <script src="./assets/js/header.js"></script>
+  <script src="./assets/js/profileBorrower.js"></script>
   <script src="./assets/js/profile.js"></script>
   <script src="./assets/js/form.js"></script>
   <script src="./assets/js/validator.js"></script>
   <script src="./assets/js/checkUser.js"></script>
   <script src="./assets/js/app.js"></script>
   <script>
-      fetchDataStorage(getCookie('id'))// call when page load
-      Validator("#book-form");
-      var genderValue = '<?php echo $dataUser['gender'];?>'
-      for (let radio of document.getElementsByName('gender')) {
-        if (radio.value == genderValue) {
-          radio.checked = true
-        }
-      }
+    var url_string = location.href;
+    var url = new URL(url_string);
+    var idUserTake = url.searchParams.get("idusertake");
+    fetchDataBorrower(idUserTake);
+    openTab('profile');
+    
+    Validator("#book-form");
   </script>
 </body>
 </html>
