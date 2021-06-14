@@ -112,11 +112,6 @@ if(isset($_COOKIE['id']) && $_POST !== array() && $_FILES !== array()) {
         setcookie('added-book', "false", time() + 1, '/');
     }
 
-    if ($_GET['page-call']=='/profileBorrower.php') {
-        $pageCall = '/profile.php?idcontent=storage';
-    } else {
-        $pageCall = $_GET['page-call'];
-    }
     echo $pageCall;
     header("location: ../..".$pageCall);
 } else {

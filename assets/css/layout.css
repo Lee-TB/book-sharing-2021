@@ -302,7 +302,8 @@
 /* category */
 .category {
     background-color: var(--white-color);
-    border-radius: 2px;
+    border-radius: 3px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
 }
 
 .category__heading {
@@ -356,11 +357,13 @@
 
 /* filter */
 .filter {
-    background-color: #e0e0e0;
+    background-color: var(--white-color);
     display: flex;
     align-items: center;
     padding: 12px 22px;
-    border-radius: 2px;
+    border-radius: 3px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 12px;
 }
 
 .filter-label {
@@ -373,10 +376,13 @@
 
 .filter-input {
     border: none;
-    border-radius: 2px;
+    border-radius: 3px;
     outline: none;
+    width: 30%;
     padding: 4px 6px;
-    margin: 0 12px;
+    display: flex;
+    margin-left: auto;
+    border: 1px solid var(--primary-color);
 }
 
 .filter__page {
@@ -441,10 +447,11 @@
 .product-item {
     background-color: var(--white-color);
     margin: 12px 0;
+    padding-bottom: 2px;
     border-radius: 2px;
     position: relative;
     transition: top linear 0.1s;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
 }
 
 .product-item:hover {

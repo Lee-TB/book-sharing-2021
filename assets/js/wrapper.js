@@ -1,8 +1,4 @@
-/***filter */
-function newSortButton() {
-    var productItemElement = document.querySelectorAll('.product-item');
-}
-
+/**filter input */
 function filterInput (event) {
     var filter = event.value;
     var productItems = document.querySelectorAll('.product-item');
@@ -16,6 +12,71 @@ function filterInput (event) {
         } else {
             item.parentElement.style.display = "none";
         }
+    }
+}
+
+/**Sort by id */
+function sortPost(element, keySort) {
+    var productContainer = document.querySelector(".product .row");
+    //get html collection
+    var products = document.getElementsByClassName('product-item')
+    // convert html collection to array
+    products = Array.prototype.slice.call(products)
+
+    /**sort default -> when a button click 2 time */
+    if (element.classList.contains('my-btn-primary')) {
+        element.classList.remove('my-btn-primary')
+        element.classList.add('my-btn-outline--hover')
+
+         // sort array default by bookname(a->z)
+         products.sort(function(a, b){
+            var aText = a.querySelector('.product-item__name').innerText
+            var bText = b.querySelector('.product-item__name').innerText
+            //compare a and b
+            return aText.localeCompare(bText);
+        });
+    } else {
+        //clear active
+        var filterButtons = document.getElementsByClassName('filter-btn')
+        for (let button of filterButtons) {
+            if (button.classList.contains('my-btn-primary')) {
+                button.classList.remove('my-btn-primary')
+                button.classList.add('my-btn-outline--hover')
+            }
+        }
+    
+        // button click add active
+        element.classList.add('my-btn-primary')
+        element.classList.remove('my-btn-outline--hover')
+    
+        // sort by new -> old
+        if (keySort == 'new') {
+            // sort array by id descend (a and b is element of array)
+            products.sort(function(a, b){
+                //compare a and b
+                return parseInt(b.id) - parseInt(a.id);
+            });
+        }
+    
+        // sort by old -> new
+        if (keySort == 'old') {
+            // sort array by id ascend (a and b is element of array)
+            products.sort(function(a, b){
+                //compare a and b
+                return parseInt(a.id) - parseInt(b.id);
+            });
+        }
+    }
+
+    /** append child into product containner (row)*/ 
+    //The first empty product container
+    productContainer.innerHTML = ''
+    // append 
+    for (let product of products) {
+        var divCol_24 = document.createElement('div');
+        divCol_24.classList.add('col-2-4');
+        divCol_24.appendChild(product);
+        productContainer.appendChild(divCol_24);
     }
 }
 

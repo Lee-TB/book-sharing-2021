@@ -33,11 +33,11 @@
                     <span class="filter-label">
                         Sắp xếp theo
                     </span>
-                    <button class="my-btn my-btn-primary--hover filter-btn" onclick="newSortButton();">Mới nhất</button>
-                    <button class="my-btn my-btn-primary--hover filter-btn">Cũ nhất</button>
+                    <button class="my-btn my-btn-outline--hover filter-btn" onclick="sortPost(this, 'new')">Mới nhất</button>
+                    <button class="my-btn my-btn-outline--hover filter-btn" onclick="sortPost(this, 'old')">Cũ nhất</button>
                     <input type="text" class="filter-input" onkeyup="filterInput(this);" placeholder="Lọc theo tên">
 
-                    <div class="filter__page">
+                    <!-- <div class="filter__page">
                         <span class="filter__page-num">
                             <span class="filter__page-current">1</span>/10
                         </span>
@@ -50,7 +50,8 @@
                                 <i class="fas fa-angle-right filter__page-icon"></i>
                             </a>
                         </div>
-                    </div>
+                    </div> -->
+
                 </div>
 
                 <div class="product">
