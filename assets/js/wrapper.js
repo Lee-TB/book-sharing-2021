@@ -80,6 +80,36 @@ function sortPost(element, keySort) {
     }
 }
 
+/**category */
+function openTabByTypeName(typename) {
+    var categoryItems = document.getElementsByClassName('category-item')
+    for (let item of categoryItems) {
+        if (item.classList.contains('category-item'+'--active')) {
+            item.classList.remove('category-item'+'--active')
+        }
+
+        if (item.children[0].innerHTML == typename) {
+            item.classList.add('category-item'+'--active')
+        }
+    }
+    
+    var productProductItems = document.querySelectorAll(".product-item");
+    for (let item of productProductItems) {
+        // display = none all product items
+        item.parentElement.style.display = 'none' //div-2-4
+        
+        if (typename == 'Tất cả') {
+            item.parentElement.style.display = 'block' //div-2-4
+        } else
+        // display = block item with true condition
+        if (item.querySelector('.product-item__typename').innerHTML == typename) {
+            item.parentElement.style.display = 'block' //div-2-4
+        }
+    }
+    
+
+}
+
 /***Display Product Detail */
 var productItems = document.querySelectorAll('.product-item')
 for (let item of productItems) {

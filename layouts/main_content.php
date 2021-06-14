@@ -9,17 +9,17 @@
                     </h3>
 
                     <ul class="category-list">
-                        <li class="category-item">
-                            <a href="#" class="category-item__link">Tất cả</a>
+                        <li class="category-item category-item--active">
+                            <a href="#" onclick="openTabByTypeName('Tất cả')" class="category-item__link">Tất cả</a>
                         </li>
-
+                        
                         <?php
                             $sql = "SELECT DISTINCT `typename` FROM `book` ORDER BY `typename`";
                             $result = $connectDatabase->query($sql);
                             for($i=1; $i<=$result->num_rows; $i++) {
                                 $data = $result->fetch_assoc();
                                 echo    '<li class="category-item">'.
-                                        '<a href="#" class="category-item__link">'.$data['typename'].'</a>'.
+                                        '<a href="#" onclick="openTabByTypeName(\''.$data['typename'].'\')" class="category-item__link">'.$data['typename'].'</a>'.
                                         '</li>';
                             }
                         ?>
@@ -80,7 +80,7 @@
 <?php
     $arrayOfObjects = array();
 
-    $sql =  "SELECT `idpost`, `bookname`, `fullname`, `posttime`, `iduser`, `photo` ".
+    $sql =  "SELECT `idpost`, `bookname`, `fullname`, `posttime`, `iduser`, `photo`, `typename` ".
     "FROM `post` ".
         "INNER JOIN `user` ON `post`.`iduser` = `user`.`id` ".
         "INNER JOIN `book` ON `post`.`idbook` = `book`.`idbook` ".
@@ -114,6 +114,7 @@
         var divCol_24 = document.createElement('div');
         divCol_24.classList.add('col-2-4');
         divCol_24.innerHTML =   '<div class="product-item" id="'+myJson[i].idpost+'-product-item">'+
+                                    '<div class="product-item__typename" style="display: none;">'+myJson[i].typename+'</div>'+
                                     '<div class="product-item__borrowed">'+
                                         '<i class="fas fa-check"></i>'+
                                         '<span>Đang được mượn</span>'+

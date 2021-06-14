@@ -82,7 +82,7 @@ function fetchDataStorage(idUser) {
                 '</td>'+
                 '<td>'+
                     // '<button class="my-btn my-btn--warning">Sửa</button>'+
-                    '<button class="my-btn my-btn--danger" onclick="if (confirm(\'Sách sẽ bị xóa\')) {deleteBook(this)}">Xóa</button>'+
+                    '<button class="my-btn my-btn--danger" onclick="if (confirm(\'Sách sẽ bị xóa\')) {deleteBook(this)}"><i class="fas fa-trash-alt"></i></button>'+
                 '</td>';
                 tr.id = arrayOject[i].idpost+'-post-storage'
                 document.querySelector('#storage table tbody').appendChild(tr)

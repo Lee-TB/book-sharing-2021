@@ -78,7 +78,8 @@
 }
 
 #header .add-book-button:hover {
-    background-color: var(--primary-color-hover);
+    background-color: var(--primary-color);
+    filter: brightness(110%);
 }
 
 #header .menu-item-link {
