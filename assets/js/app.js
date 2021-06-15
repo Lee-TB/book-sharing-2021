@@ -22,6 +22,7 @@ window.onscroll = function() {scrollToTopAppear(); headerSticky();};
 /**Thể loại theo select option */
 var typeNames = ['giáo trình', 'tài liệu tham khảo', 'truyện tranh', 'lập trình', 'tiểu thuyết', 'chính trị', 'pháp luật', 'khoa học công nghệ', 'kinh tế', 'văn học nghệ thuật', 'văn hóa xã hội', 'lịch sử', 'tâm lý', 'sách thiếu nhi'];
 typeNames.sort()
+typeNames.push('thể loại khác..')
 for (text of typeNames) {
     var selectElement = document.getElementById('typename');
     var optionNode = document.createElement('option');
