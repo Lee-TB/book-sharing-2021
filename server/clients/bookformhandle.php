@@ -112,7 +112,7 @@ if(isset($_COOKIE['id']) && $_POST !== array() && $_FILES !== array()) {
         setcookie('added-book', "false", time() + 1, '/');
     }
 
-    echo $pageCall;
+    $pageCall = $_GET['page-call'];
     header("location: ../..".$pageCall);
 } else {
     echo 'Lỗi!! Có thể bạn chưa đăng nhập hoặc Biến siêu toàn cục files và post không có thông tin';

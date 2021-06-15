@@ -10,7 +10,7 @@
 
                     <ul class="category-list">
                         <li class="category-item category-item--active">
-                            <a href="#" onclick="openTabByTypeName('Tất cả')" class="category-item__link">Tất cả</a>
+                            <a href="#" onclick="openTabByTypeName('tất cả')" class="category-item__link">Tất cả</a>
                         </li>
                         
                         <?php
@@ -139,5 +139,9 @@
             }
         }
         productContainer.appendChild(divCol_24);
+    }
+
+    for (let item of document.getElementsByClassName('category-item__link')) {
+        item.innerHTML = capitalizeFirstLetter(item.innerHTML)
     }
 </script>

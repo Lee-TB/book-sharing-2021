@@ -51,3 +51,8 @@ function timeHandle(object) {
     }
   }
 }
+
+/**first letter of a string uppercase in JavaScript */
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}

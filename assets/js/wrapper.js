@@ -88,7 +88,7 @@ function openTabByTypeName(typename) {
             item.classList.remove('category-item'+'--active')
         }
 
-        if (item.children[0].innerHTML == typename) {
+        if (item.children[0].innerHTML.toLowerCase() == typename) {
             item.classList.add('category-item'+'--active')
         }
     }
@@ -98,7 +98,7 @@ function openTabByTypeName(typename) {
         // display = none all product items
         item.parentElement.style.display = 'none' //div-2-4
         
-        if (typename == 'Tất cả') {
+        if (typename == 'tất cả') {
             item.parentElement.style.display = 'block' //div-2-4
         } else
         // display = block item with true condition
