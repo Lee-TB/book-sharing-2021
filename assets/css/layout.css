@@ -535,5 +535,28 @@
 .footer__logo {
     height: 200px;
     background-repeat: no-repeat;
-    background-position-x: center;
+    background-position-x: right;
+}
+
+.contact,
+.project {
+    font-size: 1.2rem;
+    line-height: 1.8rem;
+    color: var(--white-color);
+    margin: auto 0;
+}
+
+.contact__facebook a {
+    text-decoration: none;
+    color: var(--white-color);
+}
+
+.contact__facebook a:hover {
+    color: var(--white-color);
+    filter: brightness(90%);
+}
+
+.project {
+    font-size: 1.4rem;
+    line-height: 2rem;
 }

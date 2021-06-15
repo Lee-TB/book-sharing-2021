@@ -1,9 +1,28 @@
 <footer id="footer">
     <div class="container">
         <div class="row">
-            <div class="col-9">
+            <div class="col-3" style="display: flex;">
                 <div class="contact">
-                    
+                    <div class="contact__facebook">
+                        <a href="https://www.facebook.com/profile.php?id=100007547715762">
+                        <i class="fab fa-facebook"></i>
+                        Trần Bùi Lý Đức
+                    </a>
+                    </div>
+                    <div class="contact__gmail">
+                        <i class="far fa-envelope"></i>
+                        tblyduc2412@gmail.com
+                    </div>
+                    <div class="contact__phone">
+                        <i class="fas fa-phone"></i>
+                        0337611246
+                    </div>
+                </div>
+            </div>
+            <div class="col-6" style="display: flex;">
+                <div class="project">
+                    <div class="project__title">Niên luận cơ sở ngành: Khoa học máy tính</div>
+                    <div class="project__instructors">Giáo viên hướng dẫn: Trần Nguyễn Minh Thư</div>
                 </div>
             </div>
             <div class="col-3">
