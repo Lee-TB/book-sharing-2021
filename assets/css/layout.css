@@ -2,7 +2,8 @@
 
 /* Header */
 #header {
-    position: relative;
+    width: 100%;
+    position: absolute;
     z-index: 1;
     color: inherit;
     background: none;
@@ -293,6 +294,7 @@
 /* ******Danh mục sản phẩm */
 #wrapper {
     background-color: #f5f5f5;
+    padding-top: 165px;
 }
 
 .wrap-container {
@@ -521,6 +523,7 @@
     color: var(--text-color);
 }
 
+/* Footer */
 
 #footer {
     display: flex;
@@ -528,7 +531,9 @@
     height: 200px;
 }
 
-#footer h1 {
-    color: var(--white-color);
-    margin: auto;
+
+.footer__logo {
+    height: 200px;
+    background-repeat: no-repeat;
+    background-position-x: center;
 }

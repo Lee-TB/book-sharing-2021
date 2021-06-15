@@ -48,7 +48,7 @@
           <div class="col-2">
             <div class="tab">
               <button class="tab__links button-of-users" onclick="openTab('users')">Tất cả người dùng</button>
-              <button class="tab__links button-of-storage" onclick="openTab('storage')">Tất cả sách</button>
+              <button class="tab__links button-of-storage" onclick="openTab('storage')">Tất cả bài viết</button>
             </div>
           </div>
           <div class="col-10">
@@ -76,7 +76,7 @@
             </div>
     
             <div id="storage" class="tab-content">
-              <div class="storage-title">Tất cả sách</div>
+              <div class="storage-title">Tất cả bài viết</div>
 
               <div class="storage-container">
                 <table>

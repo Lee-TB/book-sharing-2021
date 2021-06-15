@@ -1,7 +1,6 @@
 // scripts for all pages have header
 
 //* Header Sticky
-// window.onscroll = function() {headerSticky()};
 var headerMenu = document.getElementById("header-menu");
 var sticky = headerMenu.offsetTop;
 
