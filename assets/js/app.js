@@ -29,4 +29,3 @@ for (text of typeNames) {
     optionNode.setAttribute('value', text);
     selectElement.appendChild(optionNode)
 }
-

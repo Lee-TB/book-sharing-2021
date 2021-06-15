@@ -11,10 +11,11 @@ if ($_POST !== array()) {
     if($result->num_rows != 0) {
         $data = $result->fetch_assoc();
         setcookie('id', $data['id'], time() + 3600, '/');
+        setcookie('role', $data['role'], time() + 3600, '/');
         setcookie('logged', "true", time() + 1, '/');
     } else {
         setcookie('logged', "false", time() + 1, '/');
     }
-    
+    // echo $data['role'];
     header("location: ../../index.php");
 }

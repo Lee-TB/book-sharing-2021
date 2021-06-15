@@ -15,11 +15,10 @@
   <link rel="stylesheet" href="./assets/css/components.css">
   <link rel="stylesheet" href="./assets/css/pages.css">
   <script src="./assets/js/myLibrary.js"></script>
-  <script>
-    if (getCookie('id') == '') {
+  <script>if (getCookie('id') == '') {
       location.href = 'index.php'
     }
-  </script>
+    </script>
 </head>
 <body>
   <!-- Modal, đăng ký, đăng nhập "modal không tách rời khỏi phần header"-->
@@ -48,62 +47,36 @@
         <div class="row">
           <div class="col-2">
             <div class="tab">
-              <button class="tab__links button-of-profile" onclick="openTab('profile')">Thông tin cá nhân</button>
-              <button class="tab__links button-of-storage" onclick="openTab('storage')">Kho sách của tui</button>
+              <button class="tab__links button-of-users" onclick="openTab('users')">Tất cả người dùng</button>
+              <button class="tab__links button-of-storage" onclick="openTab('storage')">Tất cả sách</button>
             </div>
           </div>
           <div class="col-10">
-            <div id="profile" class="tab-content">
-              <div class="profile-title">Thông tin tài khoản</div>
-              <?php require_once "layouts/fetchDataUser.php"?>
-              <div id="profile-info">
-                <div class="profile-info__form-group">
-                  <label for="profile-info__fullname" class="profile-info__label">Họ tên</label>
-                  <input type="text" id="profile-info__fullname" value="<?php echo $dataUser['fullname'];?>">
-                </div>
+            <div id="users" class="tab-content">
+              <div class="users-title">Thông tin người dùng</div>
 
-                <div class="profile-info__form-group">
-                  <label class="profile-info__label">Giới tính</label>
+              <div class="users-container">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Họ tên người dùng</th>
+                      <th>Giới tính</th>
+                      <th>Số điện thoại</th>
+                      <th>Gmail</th>
+                      <th>Vai trò</th>
+                      <th>Xóa</th>
+                    </tr>
+                  </thead>
+                  <tbody>
 
-                  <div class="gender">
-                      <input type="radio" id="male" name="gender" value="Nam">
-                      <label for="male">Nam</label>
-                  </div>
-
-                  <div class="gender">
-                      <input type="radio" id="female" name="gender" value="Nữ">
-                      <label for="female">Nữ</label>
-                  </div>
-
-                  <div class="gender">
-                      <input type="radio" id="other" name="gender" value="Khác">
-                      <label for="other">Khác</label>
-                  </div>
-                </div>
-
-                <div class="profile-info__form-group">
-                  <label for="profile-info__phone" class="profile-info__label">Số điện thoại</label>
-                  <input type="text" id="profile-info__phone" value="<?php echo $dataUser['phone'];?>">
-                </div>
-
-                <div class="profile-info__form-group">
-                  <label for="profile-info__gmail" class="profile-info__label">Gmail</label>
-                  <input type="text" id="profile-info__gmail" value="<?php echo $dataUser['gmail'];?>">
-                </div>
-                
-                <div class="profile-info__form-group" style="justify-content: flex-end;">
-                  <button id="profile-info__update-button" class="my-btn my-btn--warning my-btn-xl" onclick="updateProfile()">Cập nhật</button>
-                </div>
-
-                <div class="profile-info__form-group">
-                  <div id="profile-info__update-message">
-                  </div>
-                </div>
+                  </tbody>
+                </table>
               </div>
+
             </div>
     
             <div id="storage" class="tab-content">
-              <div class="storage-title">Kho sách của tui</div>
+              <div class="storage-title">Tất cả sách</div>
 
               <div class="storage-container">
                 <table>
@@ -111,6 +84,7 @@
                     <tr>
                       <th>Tên sách</th>
                       <th>Tác giả</th>
+                      <th>Người đăng</th>
                       <th>Đăng lúc</th>
                       <th>Người mượn</th>
                       <th>Xóa</th>
@@ -133,19 +107,30 @@
   
   <script src="./assets/js/header.js"></script>
   <script src="./assets/js/profile.js"></script>
+  <script src="./assets/js/admin.js"></script>
   <script src="./assets/js/form.js"></script>
   <script src="./assets/js/validator.js"></script>
   <script src="./assets/js/checkUser.js"></script>
   <script src="./assets/js/app.js"></script>
   <script>
-      fetchDataStorage(getCookie('id'))// call when page load
+      fetchDataUsersAdmin(getCookie('role'))
+      fetchDataStorageAdmin(getCookie('role'))// call when page load
+
       Validator("#book-form");
-      var genderValue = '<?php echo $dataUser['gender'];?>'
-      for (let radio of document.getElementsByName('gender')) {
-        if (radio.value == genderValue) {
-          radio.checked = true
-        }
+
+      //mặc định active vào trang tablinks có tabcontent có display = block
+      var idContentDefault = 'users'
+      document.getElementById(idContentDefault).style.display = 'block'
+      if (document.getElementById(idContentDefault).style.display == 'block') {
+          for (let item of document.getElementsByClassName('tab__links')) {
+              if (item.classList[1] != undefined) {
+                  if (item.classList[1].indexOf(idContentDefault) != -1) {
+                      item.classList.add(item.classList[0]+'--active')
+                  }
+              }
+          }
       }
+
   </script>
 </body>
 </html>

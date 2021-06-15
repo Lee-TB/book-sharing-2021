@@ -59,7 +59,7 @@ function linkToPageAndOpenTab(event, idContent) {
         location.href = 'profile.php?idcontent='+idContent;
     }
     //openTab function only run on profile.php
-    openTab(event, idContent)
+    openTab(idContent)
 }
 
 function openTabDefault() {

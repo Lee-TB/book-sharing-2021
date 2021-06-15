@@ -82,6 +82,10 @@
                             </li>
 
                             <!-- Khi đã Log In -->
+                            <li class="user-drop-down_item isAdmin">
+                                <button class="user-drop-down_button" onclick="location.href='admin.php'">Trang Quản Trị</button>
+                            </li>
+
                             <li class="user-drop-down_item logged">
                                 <button class="user-drop-down_button button-of-profile" onclick="linkToPageAndOpenTab(event,'profile')">Trang Cá Nhân</button>
                             </li>

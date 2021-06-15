@@ -53,7 +53,8 @@
 /* profile */
 
 .profile-title,
-.storage-title {
+.storage-title,
+.users-title {
     font-size: 2.4rem;
     font-weight: 500;
     margin-bottom: 20px;
@@ -92,15 +93,18 @@
 }
 
 /* CSS for storage */
-.storage-container table {
+.storage-container table,
+.users-container table{
     width: 100%;
     border-collapse: collapse;
 }
 
+.users-container tr:nth-child(even),
 .storage-container tr:nth-child(even) {
     background-color: #f2f2f2;
 }
 
+.users-container table th,
 .storage-container table th {
     padding: 12px;
     background-color: var(--primary-color);
@@ -108,25 +112,40 @@
     font-size: 1.2rem;
 }
 
+.users-container td,
 .storage-container td {
     padding: 6px 2px;
     text-align: center;
-    min-width: 100px;
 }
+
+.users-container td a,
+.storage-container td a {
+    text-decoration: none;
+} 
 
 .text-disable {
     filter: opacity(0.6);
 }
 
 .storage-container td:first-child {
-    max-width: 500px;
+    width: 300px;
 }
 
+
+.users-container th,
+.users-container td,
 .storage-container th,
 .storage-container td {
     border: 1px solid #ccc;
 }
 
+.users-container button+button,
 .storage-container button+button {
     margin-left: 2px;
 }
+
+.tabble-borrower {
+    width: 130px;
+}
+
+/* admin */

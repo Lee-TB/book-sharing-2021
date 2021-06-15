@@ -74,15 +74,15 @@ function fetchDataStorage(idUser) {
             for (let i=0; i<arrayOject.length; i++) {
                 var tr = document.createElement('tr');
                 tr.innerHTML = ''+
-                '<td>'+arrayOject[i].bookname+'</td>'+
-                '<td>'+arrayOject[i].author+'</td>'+
+                '<td title="'+arrayOject[i].bookname+'">'+arrayOject[i].bookname+'</td>'+
+                '<td title="'+arrayOject[i].author+'">'+arrayOject[i].author+'</td>'+
                 '<td>'+arrayOject[i].posttime+'</td>'+
-                '<td>'+
+                '<td class="tabble-borrower">'+
                     (arrayOject[i].fullname==null?'Chưa được mượn':'<a href="profileBorrower.php?idusertake='+arrayOject[i].idusertake+'">'+arrayOject[i].fullname+'</a>')+
                 '</td>'+
                 '<td>'+
                     // '<button class="my-btn my-btn--warning">Sửa</button>'+
-                    '<button class="my-btn my-btn--danger" onclick="if (confirm(\'Sách sẽ bị xóa\')) {deleteBook(this)}"><i class="fas fa-trash-alt"></i></button>'+
+                    '<button class="my-btn my-btn--danger" onclick="if (confirm(\'Sách sẽ bị xóa\')) {deletePost(this)}"><i class="fas fa-trash-alt"></i></button>'+
                 '</td>';
                 tr.id = arrayOject[i].idpost+'-post-storage'
                 document.querySelector('#storage table tbody').appendChild(tr)
@@ -97,9 +97,8 @@ function fetchDataStorage(idUser) {
     xmlhttp.send();
 }
 
-
 /**Storage delete item */
-function deleteBook(element) {
+function deletePost(element) {
     var idPost = parseInt(element.parentElement.parentElement.id)
     // console.log(idPost)
     var xmlhttp;
@@ -111,7 +110,7 @@ function deleteBook(element) {
     xmlhttp.onreadystatechange=function() {
         if (xmlhttp.readyState==4 && xmlhttp.status==200) {
             document.querySelector('#storage table tbody').innerHTML = '';
-            fetchDataStorage(getCookie('id'))// call when delete to reload
+            fetchDataStorage(getCookie('id')) // call when delete to reload
             alert(this.responseText)
         }
     }

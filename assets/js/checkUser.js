@@ -2,7 +2,7 @@
 //ham getCookie() được định nghĩa trong myLibrary.js
 
 //Nếu đăng nhập thành công
-if(getCookie('id') !== '') {
+if (getCookie('id') !== '') {
   var userDropDownItems = document.querySelectorAll('.user-drop-down_item');
   var loggedItems = document.querySelectorAll('.logged');
   for (let item of userDropDownItems) {
@@ -20,6 +20,13 @@ if(getCookie('id') !== '') {
   for (let item of loggedItems) {
     item.style.display = '';
   }
+}
+// Nếu là admin
+var isAdminItem = document.querySelector('.isAdmin');
+if (getCookie('role') == true) {
+  isAdminItem.style.display = 'list-item'
+} else {
+  isAdminItem.style.display = 'none'
 }
 
 //CHECK dang ky thanh cong
