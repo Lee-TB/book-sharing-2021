@@ -23,7 +23,7 @@ if (getCookie('id') !== '') {
 }
 // Nếu là admin
 var isAdminItem = document.querySelector('.isAdmin');
-if (getCookie('role') == true) {
+if (getCookie('role') == true && getCookie('id') !== '') {
   isAdminItem.style.display = 'list-item'
 } else {
   isAdminItem.style.display = 'none'
