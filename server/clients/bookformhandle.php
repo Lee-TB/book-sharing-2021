@@ -10,8 +10,8 @@ if(isset($_COOKIE['id']) && $_POST !== array() && $_FILES !== array()) {
     echo "<hr>";
     $isbn = str_replace("-", "", $_POST['isbn']);
     $bookName = str_replace("'", "\'", $_POST['bookname']);
-    $author = str_replace("'", "\'", $_POST['bookname']);
-    $publisher = str_replace("'", "\'", $_POST['bookname']);
+    $author = str_replace("'", "\'", $_POST['author']);
+    $publisher = str_replace("'", "\'", $_POST['publisher']);
     $year = $_POST['year']; // number
     $typename = $_POST['typename']; //select option
     if(isset($_POST['optionloan'])) { // radio
