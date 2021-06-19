@@ -8,13 +8,13 @@
                     </a>
                 </div>
 
-                <div class="col-8"></div>
+                <div class="col-7"></div>
 
                 <?php 
                     include_once "fetchDataUser.php";
                     if (isset($dataUser)) {
                 ?>
-                <div class="hello-user col-2">
+                <div class="hello-user col-3">
                     <div class="hello-user__full-name"><?php echo $dataUser['fullname']; ?></div>
                     <div class="hello-user__avatar">
                         <a href="profile.php?idcontent=profile" class="hello-user__avatar-link" style="background-image: url(<?php echo $dataUser['avatar']; ?>);"></a>
@@ -92,6 +92,10 @@
 
                             <li class="user-drop-down_item logged">
                                 <button class="user-drop-down_button button-of-storage" onclick="linkToPageAndOpenTab(event, 'storage')">Kho Sách Của Tui</button>
+                            </li>
+
+                            <li class="user-drop-down_item logged">
+                                <button class="user-drop-down_button button-of-borrowed" onclick="linkToPageAndOpenTab(event, 'borrowed')">Sách tui đã mượn</button>
                             </li>
 
                             <li class="user-drop-down_item logged">

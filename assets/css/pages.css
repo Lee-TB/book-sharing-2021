@@ -54,7 +54,8 @@
 
 .profile-title,
 .storage-title,
-.users-title {
+.users-title,
+.borrowed-title {
     font-size: 2.4rem;
     font-weight: 500;
     margin-bottom: 20px;
@@ -94,17 +95,20 @@
 
 /* CSS for storage */
 .storage-container table,
-.users-container table{
+.users-container table,
+.borrowed-container table {
     width: 100%;
     border-collapse: collapse;
 }
 
 .users-container tr:nth-child(even),
+.borrowed-container tr:nth-child(even),
 .storage-container tr:nth-child(even) {
     background-color: #f2f2f2;
 }
 
 .users-container table th,
+.borrowed-container table th,
 .storage-container table th {
     padding: 12px;
     background-color: var(--primary-color);
@@ -113,12 +117,14 @@
 }
 
 .users-container td,
+.borrowed-container td, 
 .storage-container td {
     padding: 6px 2px;
     text-align: center;
 }
 
 .users-container td a,
+.borrowed-container td a,
 .storage-container td a {
     text-decoration: none;
 } 
@@ -131,14 +137,24 @@
     width: 300px;
 }
 
+.borrowed-container td:last-child {
+    width: 80px;
+}
+
+.borrowed-container td:nth-child(4) {
+    width: 180px;
+}
 
 .users-container th,
 .users-container td,
+.borrowed-container th,
+.borrowed-container td,
 .storage-container th,
 .storage-container td {
     border: 1px solid #ccc;
 }
 
+.borrowed-container button+button,
 .users-container button+button,
 .storage-container button+button {
     margin-left: 2px;

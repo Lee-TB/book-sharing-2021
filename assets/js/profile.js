@@ -119,3 +119,66 @@ function deletePost(element) {
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xmlhttp.send("idpost="+idPost);
 }
+
+/**fetch data storage of borrower ajax */
+function fetchDataBorrowerStorage(idUser) {
+    var xmlhttp;
+    if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp=new XMLHttpRequest();
+    } else { // code for IE6, IE5
+        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+
+    xmlhttp.onreadystatechange=function() {
+        if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+            var arrayOject = JSON.parse(xmlhttp.responseText)
+            // console.log(arrayOject)
+            for (let i=0; i<arrayOject.length; i++) {
+                var tr = document.createElement('tr');
+                tr.innerHTML = ''+
+                '<td title="'+arrayOject[i].bookname+'">'+arrayOject[i].bookname+'</td>'+
+                '<td title="'+arrayOject[i].author+'">'+arrayOject[i].author+'</td>'+
+                '<td>'+arrayOject[i].posttime+'</td>'+
+                '<td>'+
+                    '<a href="profileBorrower.php?idusertake='+arrayOject[i].iduser+'">'+arrayOject[i].fullname+'</a>'+
+                '</td>'+
+                '<td>'+
+                    // '<button class="my-btn my-btn--warning">Sửa</button>'+
+                    // '<button class="my-btn my-btn--danger" onclick="if (confirm(\'Sách sẽ bị xóa\')) {deletePost(this)}"><i class="fas fa-trash-alt"></i></button>'+
+                    '<button class="my-btn my-btn--success" onclick="{returnPost(this)}"><i class="fas fa-undo"></i></button>'+
+                '</td>';
+                tr.id = arrayOject[i].idpost+'-post-storage'
+                document.querySelector('#borrowed table tbody').appendChild(tr)
+                if (arrayOject[i].fullname==null) {
+                    tr.querySelectorAll('td')[3].classList.add('text-disable')
+                }
+            }
+        }
+    }
+
+    xmlhttp.open("GET", "../server/clients/fetchDataBorrowerStorage.php?idusertake="+idUser, true);
+    xmlhttp.send();
+}
+
+function returnPost(element) {
+    var idPost = parseInt(element.parentElement.parentElement.id)
+    // console.log(idPost)
+    var xmlhttp;
+    if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp=new XMLHttpRequest();
+    } else { // code for IE6, IE5
+        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+
+    xmlhttp.onreadystatechange=function() {
+        if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+            document.querySelector('#borrowed table tbody').innerHTML = '';
+            fetchDataBorrowerStorage(getCookie('id')) // call when delete to reload
+            alert(this.responseText);
+        }
+    }
+
+    xmlhttp.open("POST", "../server/clients/returnPost.php", true);
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlhttp.send("idpost="+idPost);
+}

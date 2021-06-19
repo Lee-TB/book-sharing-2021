@@ -18,6 +18,8 @@
             $assocArray['loantime'] = $loantime;
             $assocArray['borrowed'] = 1;
             $json = json_encode($assocArray);
+            $sql = "UPDATE `post` SET `borrowed`='1' WHERE `idpost` = '$idpost'";
+            $connectDatabase->query($sql);
             echo $json;
         } else {
             // Thất bại
@@ -25,6 +27,7 @@
             $json = json_encode($assocArray);
             echo $json;
         }
+
 
     }
 ?>

@@ -50,6 +50,7 @@
             <div class="tab">
               <button class="tab__links button-of-profile" onclick="openTab('profile')">Thông tin cá nhân</button>
               <button class="tab__links button-of-storage" onclick="openTab('storage')">Kho sách của tui</button>
+              <button class="tab__links button-of-borrowed" onclick="openTab('borrowed')">Sách đã mượn</button>
             </div>
           </div>
           <div class="col-10">
@@ -123,6 +124,27 @@
               </div>
             </div>
 
+            <div id="borrowed" class="tab-content">
+              <div class="borrowed-title">Sách đã mượn</div>
+
+              <div class="borrowed-container">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Tên sách</th>
+                      <th>Tác giả</th>
+                      <th>Đăng lúc</th>
+                      <th>Người đăng</th>
+                      <th>Trả lại</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
@@ -139,6 +161,7 @@
   <script src="./assets/js/app.js"></script>
   <script>
       fetchDataStorage(getCookie('id'))// call when page load
+      fetchDataBorrowerStorage(getCookie('id'))// call when page load
       Validator("#book-form");
       var genderValue = '<?php echo $dataUser['gender'];?>'
       for (let radio of document.getElementsByName('gender')) {
