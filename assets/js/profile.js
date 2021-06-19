@@ -145,7 +145,7 @@ function fetchDataBorrowerStorage(idUser) {
                 '<td>'+
                     // '<button class="my-btn my-btn--warning">Sửa</button>'+
                     // '<button class="my-btn my-btn--danger" onclick="if (confirm(\'Sách sẽ bị xóa\')) {deletePost(this)}"><i class="fas fa-trash-alt"></i></button>'+
-                    '<button class="my-btn my-btn--success" onclick="{returnPost(this)}"><i class="fas fa-undo"></i></button>'+
+                    '<button class="my-btn my-btn--success" onclick="if (confirm(\'Sách sẽ được trả lại\')) {returnPost(this)}"><i class="fas fa-undo"></i></button>'+
                 '</td>';
                 tr.id = arrayOject[i].idpost+'-post-storage'
                 document.querySelector('#borrowed table tbody').appendChild(tr)
