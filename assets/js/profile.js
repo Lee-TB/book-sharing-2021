@@ -172,8 +172,12 @@ function returnPost(element) {
 
     xmlhttp.onreadystatechange=function() {
         if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+            //Cập nhật lại bảng sau khi trả sách
             document.querySelector('#borrowed table tbody').innerHTML = '';
-            fetchDataBorrowerStorage(getCookie('id')) // call when delete to reload
+            fetchDataBorrowerStorage(getCookie('id')) // call when return book to reload
+            //Cập nhật lại bảng sau khi mượn sách
+            document.querySelector('#storage table tbody').innerHTML = '';
+            fetchDataStorage(getCookie('id'))
             alert(this.responseText);
         }
     }

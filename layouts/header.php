@@ -95,7 +95,7 @@
                             </li>
 
                             <li class="user-drop-down_item logged">
-                                <button class="user-drop-down_button button-of-borrowed" onclick="linkToPageAndOpenTab(event, 'borrowed')">Sách tui đã mượn</button>
+                                <button class="user-drop-down_button button-of-borrowed" onclick="linkToPageAndOpenTab(event, 'borrowed')">Sách Tui Đã Mượn</button>
                             </li>
 
                             <li class="user-drop-down_item logged">

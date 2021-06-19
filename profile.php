@@ -50,7 +50,7 @@
             <div class="tab">
               <button class="tab__links button-of-profile" onclick="openTab('profile')">Thông tin cá nhân</button>
               <button class="tab__links button-of-storage" onclick="openTab('storage')">Kho sách của tui</button>
-              <button class="tab__links button-of-borrowed" onclick="openTab('borrowed')">Sách đã mượn</button>
+              <button class="tab__links button-of-borrowed" onclick="openTab('borrowed')">Sách tui đã mượn</button>
             </div>
           </div>
           <div class="col-10">
@@ -125,7 +125,7 @@
             </div>
 
             <div id="borrowed" class="tab-content">
-              <div class="borrowed-title">Sách đã mượn</div>
+              <div class="borrowed-title">Sách tui đã mượn</div>
 
               <div class="borrowed-container">
                 <table>
