@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chia Sẻ Sách | Trang cá nhân</title>
+  <title>Chia Sẻ Sách | Trang quản trị</title>
   <link rel="shortcut icon" href="../assets/images/logoChiaSeSach.png" type="image/x-icon">
   <script src="https://kit.fontawesome.com/bac5106e3c.js" crossorigin="anonymous"></script>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
@@ -53,13 +53,13 @@
           </div>
           <div class="col-10">
             <div id="users" class="tab-content">
-              <div class="users-title">Thông tin người dùng</div>
+              <div class="users-title">Thông tin tất cả người dùng</div>
 
               <div class="users-container">
                 <table>
                   <thead>
                     <tr>
-                      <th>Họ tên người dùng</th>
+                      <th>Tên tài khoản</th>
                       <th>Giới tính</th>
                       <th>Số điện thoại</th>
                       <th>Gmail</th>

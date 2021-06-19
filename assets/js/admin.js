@@ -15,7 +15,7 @@ function fetchDataUsersAdmin(role) {
                 var tr = document.createElement('tr');
                 tr.innerHTML = ''+
                 '<td title="'+arrayOject[i].fullname+'">'+
-                    '<a href="profileBorrower.php?idusertake='+arrayOject[i].id+'">'+arrayOject[i].fullname+'</a>'+
+                    '<a href="profileBorrower.php?idusertake='+arrayOject[i].id+'">'+arrayOject[i].username+'</a>'+
                 '</td>'+
                 '<td title="'+arrayOject[i].gender+'">'+arrayOject[i].gender+'</td>'+
                 '<td title="'+arrayOject[i].phone+'">'+arrayOject[i].phone+'</td>'+
@@ -25,7 +25,7 @@ function fetchDataUsersAdmin(role) {
                 '</td>'+
                 '<td>'+
                     // '<button class="my-btn my-btn--warning">Sửa</button>'+
-                    '<button class="my-btn my-btn--danger" onclick="if (confirm(\'Người dùng sẽ bị xóa\')) {deleteUser(this)}"><i class="fas fa-trash-alt"></i></button>'+
+                    '<button class="my-btn my-btn--danger" onclick="if (confirm(\'Người dùng sẽ bị xóa, cùng tất cả bài viết của họ. Tất cả bài viết mà họ mượn sẽ được trả lại\')) {deleteUser(this)}"><i class="fas fa-trash-alt"></i></button>'+
                 '</td>';
                 tr.id = arrayOject[i].id+'-id-user'
                 document.querySelector('#users table tbody').appendChild(tr)
@@ -89,6 +89,7 @@ function deleteUser(element) {
 
     xmlhttp.onreadystatechange=function() {
         if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+            //CẬP NHẬT LẠI TRANG SAU KHI XÓA NGƯỜI DÙNG
             document.querySelector('#users table tbody').innerHTML = '';
             fetchDataUsersAdmin(getCookie('role'))
             alert(this.responseText)

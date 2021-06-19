@@ -4,7 +4,7 @@
 
         if ($role == '1') {
             require_once "../../connection.php";
-            $sql = "SELECT `id`, `fullname`, `gender`, `phone`, `gmail`, `role` FROM `user` WHERE 1";
+            $sql = "SELECT `id`, `username`,`fullname`, `gender`, `phone`, `gmail`, `role` FROM `user` WHERE 1";
             $result = $connectDatabase->query($sql);
             if ($result->num_rows>0) {
                 $arrayObject = array();
