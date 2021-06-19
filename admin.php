@@ -14,11 +14,17 @@
   <link rel="stylesheet" href="./assets/css/layout.css">
   <link rel="stylesheet" href="./assets/css/components.css">
   <link rel="stylesheet" href="./assets/css/pages.css">
+  <style>
+    .storage-container td:nth-child(3){
+      width: 160px;
+    }
+  </style>
   <script src="./assets/js/myLibrary.js"></script>
   <script>if (getCookie('id') == '') {
       location.href = 'index.php'
     }
     </script>
+
 </head>
 <body>
   <!-- Modal, đăng ký, đăng nhập "modal không tách rời khỏi phần header"-->

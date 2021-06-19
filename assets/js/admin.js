@@ -55,10 +55,12 @@ function fetchDataStorageAdmin(role) {
                 tr.innerHTML = ''+
                 '<td title="'+arrayOject[i].bookname+'">'+arrayOject[i].bookname+'</td>'+
                 '<td title="'+arrayOject[i].author+'">'+arrayOject[i].author+'</td>'+
-                '<td title="'+arrayOject[i].fullnamepost+'">'+arrayOject[i].fullnamepost+'</td>'+
+                '<td title="'+arrayOject[i].fullnamepost+'">'+
+                    '<a href="profileBorrower.php?idusertake='+arrayOject[i].iduserpost+'">'+arrayOject[i].fullnamepost+'</a>'+
+                '</td>'+
                 '<td title="'+arrayOject[i].posttime+'">'+arrayOject[i].posttime+'</td>'+
                 '<td class="tabble-borrower">'+
-                    (arrayOject[i].fullname==null?'Chưa được mượn':'<a href="profileBorrower.php?idusertake='+arrayOject[i].idusertake+'">'+arrayOject[i].fullname+'</a>')+
+                    (arrayOject[i].fullnametake==null?'Chưa được mượn':'<a href="profileBorrower.php?idusertake='+arrayOject[i].idusertake+'">'+arrayOject[i].fullnametake+'</a>')+
                 '</td>'+
                 '<td>'+
                     // '<button class="my-btn my-btn--warning">Sửa</button>'+
@@ -66,7 +68,7 @@ function fetchDataStorageAdmin(role) {
                 '</td>';
                 tr.id = arrayOject[i].idpost+'-post-storage'
                 document.querySelector('#storage table tbody').appendChild(tr)
-                if (arrayOject[i].fullname==null) {
+                if (arrayOject[i].fullnametake==null) {
                     tr.querySelectorAll('td')[4].classList.add('text-disable')
                 }
             }

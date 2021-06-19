@@ -3,7 +3,7 @@
         require_once "../../connection.php";
         $role = $_GET['role'];
         if ($role) {
-            $sql =  "SELECT `post`.`idpost`, `bookname`, `author`, `posttime`, `user`.`fullname` AS `fullnamepost`, `user2`.`fullname`, `loan`.`idusertake`".
+            $sql =  "SELECT `post`.`idpost`, `bookname`, `author`, `posttime`, `user`.`id` AS `iduserpost`, `user`.`fullname` AS `fullnamepost`, `user2`.`fullname` AS `fullnametake`, `loan`.`idusertake`".
                     "FROM `post` ".
                     "INNER JOIN `user` ON `post`.`iduser` = `user`.`id`".
                     "INNER JOIN `book` ON `post`.`idbook` = `book`.`idbook` ".
