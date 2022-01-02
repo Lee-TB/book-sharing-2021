@@ -546,12 +546,14 @@
     margin: auto 0;
 }
 
-.contact__facebook a {
+.contact__facebook a,
+.contact__github a {
     text-decoration: none;
     color: var(--white-color);
 }
 
-.contact__facebook a:hover {
+.contact__facebook a:hover,
+.contact__github a:hover {
     color: var(--white-color);
     filter: brightness(90%);
 }
